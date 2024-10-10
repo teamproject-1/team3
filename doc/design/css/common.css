@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'UhBeeZZIBA-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/UhBeeZZIBA-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'UhBeeZZIBA-Regular';
+}
+
+body {
+    background-image: url(../img/background_image.jfif);
+}
+
+a {
+    text-decoration: none;
+}
+
+.main_container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.main_container_box {
+    width: 1300px;
+    height: 700px;
+    background-color: #97B47D;
+    box-shadow:  -15px 0 0 #637249, 15px 0 0 #637249, 0 10px 10px rgb(89, 99, 86);
+    border-radius: 20px;
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_box_left {
+    background-image: url(../img/inner_papaer_left.jfif); 
+    width: 600px;
+    height: 650px;
+    box-shadow: 5px 10px 5px rgb(89, 99, 86);
+}
+
+.main_box_right {
+    background-image: linear-gradient(to right, #D6C0AB, #fdecd2);
+    width: 600px;
+    height: 650px;
+    box-shadow: 5px 10px 5px rgb(89, 99, 86);
+}
+
+.btn_small {
+    width: 140px;
+    height: 45px;
+    font-size: 25px;
+    border: none;
+    border-radius: 20px;
+    background-color: #BCCE5D;
+    color: #fff;
+}
+
+.btn_small:hover {
+    background-color: #899B2D;
+}
