@@ -199,4 +199,11 @@
     border-radius: 0 20px 20px 0;
     margin-left: 1250px;
     margin-bottom: 400px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.list_deco_btn:hover {
+    background-color: #8C9D34;
+    cursor: pointer;
 }
