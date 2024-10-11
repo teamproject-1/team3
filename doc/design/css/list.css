@@ -187,3 +187,16 @@
     margin-top: 25px;
 }
 
+.list_deco_btn {
+    position: absolute;
+    border: none;
+    background-color: #BCCE5D;
+    width: 50px;
+    height: 120px;
+    font-size: 25px;
+    writing-mode: vertical-rl;
+    color: #fff;
+    border-radius: 0 20px 20px 0;
+    margin-left: 1250px;
+    margin-bottom: 400px;
+}
