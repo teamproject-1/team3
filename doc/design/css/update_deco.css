@@ -1,8 +1,19 @@
+* {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
+}
+
 .main_container_box input {
     display: none;
     /* -webkit-appearance:none; 
     -moz-appearance:none;
       appearance:none; */
+}
+
+.main_container_box label {
+    caret-color: transparent;
 }
 
 p {
