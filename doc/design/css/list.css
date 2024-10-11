@@ -147,6 +147,18 @@
 }
 
 /* 책 오른쪽 */
+.main_box_right_sticker {
+    display: grid;
+    grid-template-columns: 200px 200px 200px ;  
+    text-align: center;
+}
+
+.list_sticker_img {
+    width: 100px;
+    height: 100px;
+    margin-top: 50px;
+}
+
 .main_box_right {
     display: grid;
     justify-items: center;
