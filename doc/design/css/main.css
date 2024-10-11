@@ -1,6 +1,4 @@
-
-
-
+/* 메인 이미지 박스 */
 .main_img_box {
     display: flex;
     flex-direction :column;
@@ -8,9 +6,7 @@
     align-items: center;
     height: 65vh;
 }
-
-
-
+/* 메인 이미지 */
 .main_img {
     background-image: url(../img/book.PNG);
     background-repeat: no-repeat;
@@ -19,7 +15,26 @@
     height: 450px;   
 }
 
+/* 스티커 박스 */
+.stick_box {
+    margin-top :50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:190px
+}
+
 /* 달력 */
+.main_box_right {
+    background-image: linear-gradient(to right, #D6C0AB, #fdecd2);
+    width: 600px;
+    height: 650px;
+    box-shadow: 5px 10px 5px rgb(89, 99, 86);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
 
 .color {
     background-color: #B2C999;
@@ -36,7 +51,6 @@
     border-radius: 20px;
     border-style: solid;
     border-color: #B2C999;
-    margin-top: 50px;
 }
 .calendar {
     width: 450px;
