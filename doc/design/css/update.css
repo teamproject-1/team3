@@ -1,0 +1,110 @@
+/* 데코 */
+.detail_top_tape {
+    background-image: url(../img/theme/pixel_masking.png);
+    background-position: center;
+    width: 1200px;
+    height: 40px;
+}
+
+.detail_bottom_tape {
+    background-image: url(../img/theme/pixel_masking.png);
+    background-position: center;
+    width: 1200px;
+    height: 40px;
+}
+
+.detail_sticker1 {
+    width: 150px;
+    height: 150px;
+    transform: rotate(10deg);
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.detail_sticker2 {
+    width: 150px;
+    height: 150px;
+    transform: rotate(-10deg);
+    position: absolute;
+    top: 200px;
+    left: -10px;
+}
+
+.detail_sticker3 {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    bottom: -10px;
+    right: 0px;
+}
+
+.detail_delete {
+    position: absolute;
+    top: 80px;
+    right: 200px;
+    width: 50px;
+}
+
+/* update의 요소들을 감싸는 box */
+.detail_container_box {
+    height: 650px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* update의 초록 배경 */
+.detail_back_green {
+    background-color: #97B47D;
+    box-shadow: 0 10px 20px #9A8B7B;
+    border-radius: 20px;
+    width: 950px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* update의 흰색 배경 */
+.detail_back_white {
+    background-color: #fff;
+    width: 850px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.detail_content_top {
+    display: flex;
+}
+
+.detail_content_date {
+    background-color: #BCCE5D;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 5px 15px;
+}
+
+.detail_content_todo {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.detail_content_checkbox {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.detail_content_timestamp {
+    font-size: 1.2rem;
+}
