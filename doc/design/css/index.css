@@ -1,12 +1,13 @@
 /* 책 */
  .index_book {    
     background-color: #637249;
-    box-shadow: 0 7px 0 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.5);
     border-radius: 0 10px 10px 0;
     transform: rotate(-13deg);
     transition: transform 0.3s linear; 
     
 }
+
 
 /*  책 표지 배경   */
 .index_container {
@@ -53,3 +54,6 @@
     
 } 
 
+a:visited {
+    color :#000;
+}
