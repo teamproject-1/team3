@@ -1,0 +1,91 @@
+
+/* detail의 요소들을 감싸는 box */
+.detail_container_box {
+    height: 650px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* detail의 초록 배경 */
+.detail_back_green {
+    background-color: #97B47D;
+    box-shadow: 0 10px 20px #9A8B7B;
+    border-radius: 20px;
+    width: 950px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* detail의 흰색 배경 */
+.detail_back_white {
+    background-color: #fff;
+    width: 850px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.detail_content_top {
+    display: flex;
+}
+
+.detail_content_date {
+    background-color: #BCCE5D;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 5px 15px;
+}
+
+.detail_content_todo {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.detail_content_checkbox {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.detail_content_timestamp {
+    font-size: 1.2rem;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
+
+.error_content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 30px;
+}
+
+.error_content_font {
+    font-size: 22px;
+    vertical-align: middle;
+    margin-top: 40px;
+}
+
+.error_content_font > h1 {
+    color: red;
+}
+
+.error_content_font > p {
+    margin-top: 10px;
+}
+
+.error_btn_error {
+    width: 200px;
+}
