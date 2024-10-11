@@ -39,13 +39,6 @@
     right: 0px;
 }
 
-.detail_delete {
-    position: absolute;
-    top: 80px;
-    right: 200px;
-    width: 50px;
-}
-
 /* detail의 요소들을 감싸는 box */
 .detail_container_box {
     height: 650px;
@@ -80,8 +73,27 @@
     align-items: center;
 }
 
-.detail_content_top {
-    display: flex;
+.detail_delete {
+    position: absolute;
+    border-radius: 5px;
+    top: 80px;
+    right: 200px;
+    width: 50px;
+    height: 42px;
+}
+
+.detail_delete_hover {
+    display: none;
+    width: 50px;
+    height: 42px;
+}
+
+.detail_delete:hover .detail_delete_img {
+    display: none;
+}
+
+.detail_delete:hover .detail_delete_hover {
+    display: block;
 }
 
 .detail_content_date {
