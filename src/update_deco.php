@@ -64,6 +64,7 @@ try {
     exit;
 }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +79,7 @@ try {
 <body>
     <main>
         <div class="main_container">
-            <form action="./update_deco.html" method="post">
+            <form action="/update_deco.php" method="post">
                 <input type="hidden" name="cal_id" value="<?php echo $result["cal_id"] ?>">
                 <div class="main_container_box">
                     <div class="main_box_left">
