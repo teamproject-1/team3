@@ -4,6 +4,7 @@ require_once(MY_PATH_DB_LIB);
 
 $conn = null;
 
+
 try {
     if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
         // GET 처리
