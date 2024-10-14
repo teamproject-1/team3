@@ -11,6 +11,10 @@ try {
     if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
         // GET 처리
         $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;
+        $year = isset($_GET["year"]) ? $_GET["year"] : 0;
+        $month = isset($_GET["month"]) ? $_GET["month"] : 0;
+        $day = isset($_GET["day"]) ? $_GET["day"] : 0;
+        // $cal_id = 1;
 
         if($cal_id < 1) {
             throw new Exception("파라미터 오류");
@@ -18,7 +22,6 @@ try {
 
         $conn = my_db_conn();
 
-        $conn->beginTransaction();
         $arr_prepare = [
             "cal_id" => $cal_id
         ];
@@ -26,6 +29,8 @@ try {
         $result = my_board_select_cal_id($conn, $arr_prepare);
 
     }else {
+        $conn = my_db_conn();
+        $conn->beginTransaction();
         // POST 처리
         $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
         $weather = isset($_POST["weather"]) ? $_POST["weather"] : "";
@@ -35,7 +40,6 @@ try {
             throw new Exception("파라미터 오류");
         }
 
-        $conn = my_db_conn();
 
         // 날씨 POST 처리시 출력
         if($_POST["weather"] === "weather_sun") {
@@ -56,17 +60,17 @@ try {
         if($_POST["emotion"] === "emotion_happy") {
             $emotion = "/img/emotion/list_emotion_happy.png";
         } else if($_POST["emotion"] === "emotion_sad") {
-            $weather = "/img/emotion/list_emotion_sad.png";
+            $emotion = "/img/emotion/list_emotion_sad.png";
         } else if($_POST["emotion"] === "emotion_angry") {
-            $weather = "/img/emotion/list_emotion_angry.png";
+            $emotion = "/img/emotion/list_emotion_angry.png";
         } else if($_POST["emotion"] === "emotion_unrest") {
-            $weather = "/img/emotion/list_emotion_unrest.png";
+            $emotion = "/img/emotion/list_emotion_unrest.png";
         } else if($_POST["emotion"] === "emotion_tired") {
-            $weather = "/img/emotion/list_emotion_tired.png";
+            $emotion = "/img/emotion/list_emotion_tired.png";
         } else if($_POST["emotion"] === "emotion_calm") {
-            $weather = "/img/emotion/list_emotion_calm.png";
+            $emotion = "/img/emotion/list_emotion_calm.png";
         } else if($_POST["emotion"] === "emotion_null") {
-            $weather = "";
+            $emotion = "";
         } else {
             throw new Exception("감정 오류");
         }
@@ -84,13 +88,11 @@ try {
             throw new Exception("테마 오류");
         }
 
-
-        
         $arr_prepare = [
             "cal_id" => $cal_id
-            ,"weather" => $_POST["weather"]
-            ,"emotion" => $_POST["emotion"]
-            ,"theme" => $_POST["theme"]
+            ,"weather" => $weather
+            ,"emotion" => $emotion
+            ,"theme" => $theme
         ];
         
         my_board_update_deco($conn, $arr_prepare);
@@ -241,7 +243,7 @@ try {
                         </div>
                         <div class="update_btn">
                             <button class="btn_small" type="submit">확인</button>
-                            <a href="/list.php?cal_id=<?php echo $result["cal_id"] ?>"><button class="btn_small" type="button">취소</button></a>
+                            <a href="/list.php?date=<?php echo $result["year"].".".$result["month"].".".$result["day"] ?>&cal_id=<?php echo $result["cal_id"] ?>"><button class="btn_small" type="button">취소</button></a>
                         </div>
                     </div>
                 </div>
