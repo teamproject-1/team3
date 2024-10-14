@@ -1,6 +1,6 @@
 <?php
 // MARIADB 설정
-define("MY_MARIADB_HOST", "localhost");     // HOST
+define("MY_MARIADB_HOST", "112.222.157.156");     // HOST
 define("MY_MARIADB_PORT", "6532");          // PORT
 define("MY_MARIADB_USER", "team3");          
 define("MY_MARIADB_PASSWORD", "team3");
