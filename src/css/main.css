@@ -90,11 +90,26 @@
     border: 1px solid #000;
     text-align: center;
     font-size: 16px;
+    transition: all 0.3s;
+}
+/* 일 오버시 배경화면 줌인아웃 */
+.day:hover {
+    background-color: #637249;
+    transform: scale(1.2);
+
 }
 .blank {
     background-color: #fff;
 }
-
+/* 메인 달력 일 색상 */
 .main_a_color {
     color : #000;
+    transition: all 0.3s;
+}
+/* 메인 달력 일 색상 오버시 효과 */
+.main_a_color:hover {
+   
+    color : #BCCE5D;
+    transform: scale(1.2);
+
 }
