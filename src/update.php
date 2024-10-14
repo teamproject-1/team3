@@ -39,6 +39,7 @@ try {
     }else {
          // POST 처리
          $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
+         $td_id = isset($_POST["td_id"]) ? $_POST["td_id"] : 0;
          $content = isset($_POST["content"]) ? $_POST["content"] : "";
 
          if($cal_id < 1 || $content === "") {
@@ -59,7 +60,7 @@ try {
 
         $conn->commit();
 
-        header("Location: /detail.php?cal_id=".$cal_id);
+        header("Location: /detail.php?cal_id=".$cal_id."&td_id=".$td_id);
         exit;
     }
 }catch(Throwable $th){
