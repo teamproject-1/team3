@@ -133,7 +133,7 @@
                                 <div class="detail_content_timestamp"><?php echo $result_todo["todo_created_at"] ?></div>
                             </div>
                             <div>
-                                <a href="./update.php?cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">수정</button></a>
+                                <a href="./update.php?cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">수정</button></a>
                                 <a href="./list.php?cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">취소</button></a>
                             </div>
                         </div>
