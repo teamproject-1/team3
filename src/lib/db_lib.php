@@ -122,12 +122,41 @@ function my_memo_select($conn) {
     .       " memo_boards "
     ." WHERE "
     .       " memo_deleted_at IS NULL  "
+    ." order by "
+    ." memo_id desc "
     ;
 
     $stmt = $conn->query($sql);
 
     return $stmt->fetchAll();
 }
+
+// 메모 업데이트
+function my_memo_delete($conn, $arr_param) {
+    $sql =
+        " UPDATE memo_boards "
+        ." set "
+        ." memo_updated_at = now() "
+        ." ,memo_deleted_at = now() "
+        ." WHERE "
+        ." memo_id = :memo_id "
+    ; 
+    
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    if($stmt->rowCount() !== 1) {
+        throw new Exception("Delete Count 이상");
+    }
+
+    return true;
+
+}
+
 
 function my_todolist_select_cal_id($conn, array $arr_param) {
     $sql =
