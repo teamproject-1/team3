@@ -104,6 +104,12 @@
     border-radius: 20px;
     border-style: solid;
     border-color: #B2C999;
+    overflow-y: scroll;
+    
+}
+
+.scrollable::-webkit-scrollbar {
+    display: none; /* 스크롤바 숨김 */
 }
 
 .list_memo_insert_btn {
@@ -130,15 +136,17 @@
 
 .list_memo_box {
     display: flex;
-    margin-top: 7px;
+    margin-top: 8px;
 }
 
 .list_memo_area {
+    display: flex;
     width: 475px;
     height: 30px;
-    /* border-style: none; */
+    border-style: none;
     /* 보더스타일논 크기확인하려고 주석처리 */
-    border: solid 1px;
+    align-items: center;
+
 }
 
 .list_memo_input_btn {

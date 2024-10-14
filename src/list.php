@@ -7,6 +7,8 @@
     $year = isset($_GET['year']) ? $_GET['year'] : date('Y');
     // GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
     $month = isset($_GET['month']) ? $_GET['month'] : date('m');
+    // GET으로 넘겨 받은 day값이 있다면 넘겨 받은걸 day변수에 적용하고 없다면 현재 월
+    $day = isset($_GET['day']) ? $_GET['day'] : date('d');
 
     $date = "$year-$month-01"; // 현재 날짜
     $time = strtotime($date); // 현재 날짜의 타임스탬프
@@ -18,19 +20,11 @@
     try{
         $conn = my_db_conn();
 
-        if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
-            $arr_prepare = [
-                "memo_content" => $_POST["memo_content"]
-            ];
-
-            $result = my_memo_insert($conn, $arr_prepare);
-        }
+        $result2 = my_memo_select($conn);
     }catch(Throwable $th) {
         require_once(MY_PATH_ERROR);
         exit;
     }
-
-    $result2 = my_memo_select($conn);
 
 ?>
 <!DOCTYPE html>
@@ -113,21 +107,30 @@
 
 
                 <!-- 메모 기능 -->
-                <div class="list_box_left_memo">
+                <div class="list_box_left_memo scrollable">
                     <!-- 폼 포스트 으로보내기 -->
-                    <form method="post" action="/list.php">
+                    <form method="post" action="/memo_insert.php">
                         <div>
                             <input name="memo_content" required class="list_memo_input_text" placeholder="입력하세요.." type="text">
                             <button type="submit" class="list_memo_insert_btn">확인</button>
                         </div>
+                        <input type="hidden" name="year" value="<?php echo $year ?>">
+                        <input type="hidden" name="month" value="<?php echo $month ?>">
+                        <input type="hidden" name="day" value="<?php echo $day ?>">
                     </form>        
                     <?php
                     foreach($result2 as $item) {
                     ?>
-                        <div class="list_memo_box">
-                            <div class="list_memo_area"><?php echo $item["memo_content"] ?></div>
-                            <button class="list_memo_input_btn" type="button"> <img class="list_btn_img" src="./img/delete_icon.png" alt=""></button>
-                        </div>
+                        <form method="post" action="/memo_delete.php">
+                            <div class="list_memo_box">
+                                <div class="list_memo_area"><?php echo $item["memo_content"] ?></div>
+                                <button class="list_memo_input_btn" type="submit"> <img class="list_btn_img" src="./img/delete_icon.png" alt=""></button>
+                            </div>
+                            <input type="hidden" name="memo_id" value="<?php echo $item["memo_id"] ?>">
+                            <input type="hidden" name="year" value="<?php echo $year ?>">
+                            <input type="hidden" name="month" value="<?php echo $month ?>">
+                            <input type="hidden" name="day" value="<?php echo $day ?>">
+                        </form>
                     <?php
                     }
                     ?>
