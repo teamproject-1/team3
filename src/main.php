@@ -32,8 +32,7 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
             <div class="main_container_box">
                     <div class="main_box_left">
                         <div class= "main_img_box">
-                             <div class="main_img">
-                                
+                             <div class="main_img">                                
                              </div>
                         </div>
                     </div>
