@@ -36,12 +36,12 @@ function my_board_select_cal_id($conn, array $arr_param) {
 function my_board_update_deco($conn, array $arr_param) {
     $sql =
     " UPDATE deco_boards "
+    ." SET "
     ."      weather =:weather "
-    ."      emotion =:emotion "
-    ."      theme =:theme "
-    ."      deco_created_at =:NOW() "
-    ."      deco_updated_at =:NOW() "
-    // 데코 생성일,수정일도 deco_boards에 만들어야 하나..?
+    ."      ,emotion =:emotion "
+    ."      ,theme =:theme "
+    ."      ,deco_created_at =NOW() "
+    ."      ,deco_updated_at =NOW() "
     ." WHERE "
     ."      cal_id =:cal_id "
     ;
