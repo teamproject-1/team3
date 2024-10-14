@@ -63,7 +63,7 @@ function my_board_update_deco($conn, array $arr_param) {
 // 메모 인서트 
 function my_memo_insert($conn, $arr_param) {
     $sql =
-    " INSERT INTO calendar_boards ( "
+    " INSERT INTO memo_boards ( "
     ." memo_content "
     ." ) "
     ." VALUES ( "
@@ -87,22 +87,23 @@ function my_memo_insert($conn, $arr_param) {
     return true;
 }
 
-// function my_memo_select($conn, $arr_param) {
-//     $sql =
-//     " SELECT "
-//     ." memo_content "
-//     ." from "
-//     ." calendar_boards "
-//     ." WHERE "
-//     ." id = :id "
-//     ;
+function my_todolist_select_cal_id($conn, array $arr_param) {
+    $sql =
+    " SELECT "
+    ."      * "
+    ." FROM "
+    ."      todolist_boards "
+    ." WHERE "
+    ."      cal_id = :cal_id "
+    ." AND  td_id = :td_id "
+    ;
 
-//     $stmt = $conn->prepare($sql);
-//     $result_flg = $stmt->execute($arr_param);
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
 
-//     if(!$result_flg) {
-//         throw new Exception("쿼리 실행 실패");
-//     }
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
 
-//     return $stmt->fetchAll();
-// }
+     return $stmt->fetch();
+}
