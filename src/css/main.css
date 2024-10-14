@@ -43,7 +43,7 @@
     justify-items: center;
     grid-template-rows: 470px 180px;
 }
-.list_box_left_calender {
+.main_box_left_calender {
     background-color: white;
     width: 500px;
     height: 400px;
@@ -63,7 +63,7 @@
     justify-content: center;
     gap: 50px;
 }
-.list_month_btn {
+.main_month_btn {
     border: none;
     background-color: none;
     background-color: transparent;
@@ -93,4 +93,8 @@
 }
 .blank {
     background-color: #fff;
+}
+
+.main_a_color {
+    color : #000;
 }

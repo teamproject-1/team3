@@ -43,29 +43,29 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                             <img src="/img/emotion/list_emotion_angry.png" alt="">                                
                         </div>
                         <div class="stick"> 
-                            <img src="./img/emotion/list_emotion_sad.png" alt="">  
+                            <img src="/img/emotion/list_emotion_sad.png" alt="">  
                         </div>
                     </div>                             
                     
-                    <div class="list_box_left_calender">
+                    <div class="main_box_left_calender">
                     <div class="calendar">
                         <div class="month">
                             <!-- 현재가 1월이라 이전 달이 작년 12월인경우 -->
                             <?php if ($month == 1): ?>
                                 <!-- 작년 12월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year-1 ?>&month=12"> < </a>
+                                <a class="main_month_btn" href="/main.php?year=<?php echo $year-1 ?>&month=12"> < </a>
                             <?php else: ?>
                                 <!-- 이번 년 이전 월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>"> < </a>
+                                <a class="main_month_btn" href="/main.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>"> < </a>
                             <?php endif ?>
                             <h1><?php echo "$year 년 $month 월" ?></h1>
                             <!-- 현재가 12월이라 다음 달이 내년 1월인경우 -->
                             <?php if ($month == 12): ?>
                                 <!-- 내년 1월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year+1 ?>&month=1"> > </a>
+                                <a class="main_month_btn" href="/main.php?year=<?php echo $year+1 ?>&month=1"> > </a>
                             <?php else: ?>
                                 <!-- 이번 년 다음 월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>"> > </a>
+                                <a class="main_month_btn" href="/main.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>"> > </a>
                             <?php endif ?>
                         </div>
                         <!-- 월화수목금토일 -->
@@ -89,7 +89,7 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                                                 <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
                                                 <?php if ( ($d > 1 || $k >= $start_week) && ($total_day >= $d) ): ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
-                                                    <a class="list_a_color" href="/detail.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>"><?php echo $d++ ?></a>
+                                                    <a class="main_a_color" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>"><?php echo $d++ ?></a>
                                                 <?php endif ?>
                                             </div>
                                         <?php endfor; ?>
