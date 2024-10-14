@@ -35,13 +35,12 @@ function my_board_select_cal_id($conn, array $arr_param) {
 // update_deco 함수
 function my_board_update_deco($conn, array $arr_param) {
     $sql =
-    " UPDATE deco_boards "
+    " UPDATE calendar_boards "
     ." SET "
     ."      weather =:weather "
     ."      ,emotion =:emotion "
     ."      ,theme =:theme "
-    ."      ,deco_created_at =NOW() "
-    ."      ,deco_updated_at =NOW() "
+    ."      ,updated_at =NOW() "
     ." WHERE "
     ."      cal_id =:cal_id "
     ;
