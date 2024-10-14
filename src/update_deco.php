@@ -46,7 +46,7 @@ try {
         if($_POST["weather"] === "weather_sun") {
             $weather = "/img/weather/list_weather_sun.png";
         } else if($_POST["weather"] === "weather_cloud") {
-            $weather = "/img/weather/list_weather_sun.png";
+            $weather = "/img/weather/list_weather_cloud.png";
         } else if($_POST["weather"] === "weather_rain") {
             $weather = "/img/weather/list_weather_rain.png";
         } else if($_POST["weather"] === "weather_snow") {
@@ -244,7 +244,7 @@ try {
                         </div>
                         <div class="update_btn">
                             <button class="btn_small" type="submit">확인</button>
-                            <a href="/list.php?date=<?php echo $result["year"].".".$result["month"].".".$result["day"] ?>&cal_id=<?php echo $result["cal_id"] ?>"><button class="btn_small" type="button">취소</button></a>
+                            <a href="/list.php?year=<?php echo $result["year"] ?>&month=<?php echo $result["month"] ?>&day=<?php echo $result["day"] ?>&cal_id=<?php echo $result["cal_id"] ?>"><button class="btn_small" type="button">취소</button></a>
                         </div>
                     </div>
                 </div>
