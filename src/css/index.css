@@ -1,0 +1,59 @@
+/* 책 */
+ .index_book {    
+    background-color: #637249;
+    box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 0 10px 10px 0;
+    transform: rotate(-13deg);
+    transition: transform 0.3s linear; 
+    
+}
+
+
+/*  책 표지 배경   */
+.index_container {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    background-color: #97B47D;
+    border-radius: 0 10px 10px 0;
+    width: 600px;
+    height: 700px;
+    margin-left:50px;
+   
+    
+}
+/* 책 컨텐츠 박스 */
+.index_content-box {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    gap:30px;
+} 
+
+/* 책 타이틀 박스 */
+ .index_title {
+    background-color: #D9D9D9;
+    width: 400px;    
+    padding : 15px;
+    text-align: center;
+} 
+
+/* 책 이미지 박스 */
+ .index_img_box {
+    background-image: url(../img/book.PNG);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 400px;
+    height: 450px;    
+} 
+/* 책 줌인 */
+.index_book:hover { 
+    transform: scale(1.2);
+    
+} 
+
+a:visited {
+    color :#000;
+}

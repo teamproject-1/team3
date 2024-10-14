@@ -1,3 +1,9 @@
+<?php 
+require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -11,7 +17,7 @@
     <main>
         <div class="main_container">
             <!-- 책 -->
-            <a href="./main.html">
+            <a href=<?php echo"/main.php"?>>
             <div class="index_book">
                 <!--책 표지 배경  -->
                 <div class="index_container">
@@ -33,4 +39,3 @@
     </main>
 </body>
 </html>
-
