@@ -81,15 +81,15 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                         <div>
                             <div>
                                 <!-- 총 주차를 반복합니다. -->
-                                <?php for ($n = 1, $i = 0; $i < $total_week; $i++): ?>
+                                <?php for ($d = 1, $i = 0; $i < $total_week; $i++): ?>
                                     <div class="days">
                                         <!-- 1일부터 7일 (한 주) -->
                                         <?php for ($k = 0; $k < 7; $k++): ?>
                                             <div class="day">
                                                 <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
-                                                <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ): ?>
+                                                <?php if ( ($d > 1 || $k >= $start_week) && ($total_day >= $d) ): ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
-                                                    <a class="list_a_color" href="/detail.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $n ?>"><?php echo $n++ ?></a>
+                                                    <a class="list_a_color" href="/detail.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>"><?php echo $d++ ?></a>
                                                 <?php endif ?>
                                             </div>
                                         <?php endfor; ?>
