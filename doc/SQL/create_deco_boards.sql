@@ -6,6 +6,9 @@ CREATE TABLE deco_boards (
 	,weather				VARCHAR(1000)
 	,emotion				VARCHAR(1000)
 	,theme				CHAR(1)					DEFAULT '3'		COMMENT '0이면 동물, 1이면 식물, 2면 픽셀, 3은 없음'
+	,deco_created_at 	TIMESTAMP
+	,deco_updated_at 	TIMESTAMP
+	,deco_deleted_at 	TIMESTAMP
 );
 
 ALTER TABLE deco_boards
