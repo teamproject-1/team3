@@ -14,6 +14,21 @@
     $total_day = date('t', $time); // 2. 현재 달의 총 날짜
     $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
 
+    if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
+        try{
+            $conn = my_db_conn();
+            $arr_prepare = [
+                "memo_content" => $_POST["memo_content"]
+            ];
+
+            $result = my_memo_insert($conn, $arr_prepare);
+
+        }catch(Throwable $th) {
+            require_once(MY_PATH_ERROR);
+            exit;
+        }
+    }
+
 ?>
 
 
@@ -24,7 +39,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/list.css">
-    <title>Document</title>
+    <title>리스트페이지</title>
 </head>
 <body>
 
@@ -75,15 +90,15 @@
                         <div>
                             <div>
                                 <!-- 총 주차를 반복합니다. -->
-                                <?php for ($n = 1, $i = 0; $i < $total_week; $i++): ?> 
+                                <?php for ($day = 1, $i = 0; $i < $total_week; $i++): ?> 
                                     <div class="days"> 
                                         <!-- 1일부터 7일 (한 주) -->
                                         <?php for ($k = 0; $k < 7; $k++): ?> 
                                             <div class="day"> 
                                                 <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
-                                                <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ): ?>
+                                                <?php if ( ($day > 1 || $k >= $start_week) && ($total_day >= $day) ): ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
-                                                    <a class="list_a_color" href="/detail.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $n ?>"><?php echo $n++ ?></a>
+                                                    <a class="list_a_color" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $day ?>"><?php echo $day++ ?></a>
                                                 <?php endif ?>
                                             </div> 
                                         <?php endfor; ?> 
@@ -98,14 +113,17 @@
 
                 <!-- 메모 기능 -->
                 <div class="list_box_left_memo">
-                    <div>
-                        <input class="list_memo_input_text" placeholder="입력하세요.." type="text">
-                        <button class="list_memo_insert_btn">확인</button>
-                    </div>
+                    <!-- 폼 포스트 으로보내기 -->
+                    <form method="post" action="/list.php">
+                        <div>
+                            <input name="memo_content" required class="list_memo_input_text" placeholder="입력하세요.." type="text">
+                            <button type="submit" class="list_memo_insert_btn">확인</button>
+                        </div>
+                    </form>        
 
                     <div class="list_memo_box">
                         <div class="list_memo_area">
-                        
+                            <?php echo $result["memo_content"] ?>
                         </div>
                         <button class="list_memo_input_btn" type="button"> <img class="list_btn_img" src="./img/delete_icon.png" alt=""></button>
                     </div>
@@ -134,23 +152,23 @@
                 <div class="list_box_right_detail">
                     <div class="list_box_right_detail_box">
                         <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="../design/img/checkbox.png" alt=""></a>
+                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
                     </div>
                     <div class="list_box_right_detail_box">
                         <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="../design/img/checkbox.png" alt=""></a>
+                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
                     </div>
                     <div class="list_box_right_detail_box">
                         <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="../design/img/checkbox.png" alt=""></a>
+                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
                     </div>
                     <div class="list_box_right_detail_box">
                         <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="../design/img/checkbox.png" alt=""></a>
+                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
                     </div>
                     <div class="list_box_right_detail_box">
                         <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="../design/img/checkbox.png" alt=""></a>
+                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
                     </div>
                 </div>
               

@@ -90,6 +90,26 @@ function my_memo_insert($conn, $arr_param) {
     return true;
 }
 
+// 메모 셀렉트
+function my_memo_select($conn, $arr_param) {
+    $sql =
+    " SELECT "
+        ." * "
+    ." FROM "
+        ." memo_content "
+    ." WHERE "
+    ." deleted_at IS NULL  "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    return $stmt->fetchAll();
+}
 function my_todolist_select_cal_id($conn, array $arr_param) {
     $sql =
     " SELECT "

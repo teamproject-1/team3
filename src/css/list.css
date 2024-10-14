@@ -113,7 +113,11 @@
     height: 30px;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
+}
 
+.list_memo_insert_btn:hover {
+    background-color: #8C9D34;
 }
 
 .list_memo_input_text {
