@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS memo_boards;
+
+CREATE TABLE memo_boards (
+	memo_id 				BIGINT(20) UNSIGNED 	PRIMARY KEY AUTO_INCREMENT
+	,memo_content		VARCHAR(500)			NOT NULL 
+	,memo_created_at 	TIMESTAMP				NOT NULL DEFAULT CURRENT_TIMESTAMP()
+	,memo_updated_at 	TIMESTAMP				NOT NULL DEFAULT CURRENT_TIMESTAMP()
+	,memo_deleted_at 	TIMESTAMP
+);
