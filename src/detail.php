@@ -4,33 +4,58 @@
 
     $conn = null;
     try{
-        // $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;  // 달력 id
-        // $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id
+        if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
+            // $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;  // 달력 id
+            // $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id
 
-        $cal_id = 1;
-        $td_id = 1;
+            $cal_id = 1;
+            $td_id = 1;
 
-        if($cal_id < 1) {
-            throw new Exception("파라미터 오류");
+            if($cal_id < 1) {
+                throw new Exception("파라미터 오류");
+            }
+            if($td_id < 1) {
+                throw new Exception("파라미터 오류");
+            }
+
+            $conn = my_db_conn();
+
+            $arr_prepare1 = [
+                "cal_id" => $cal_id
+            ];
+
+            $result_cal = my_board_select_cal_id($conn, $arr_prepare1);
+
+            $arr_prepare2 = [
+                "cal_id" => $cal_id
+                ,"td_id" => $td_id
+            ];
+
+            $result_todo = my_todolist_select_cal_id($conn, $arr_prepare2);
+        } else {
+            $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
+            $td_id = isset($_POST["td_id"]) ? $_POST["td_id"] : 0;
+            $check_todo = isset($_POST["check_todo"]) ? $_POST["check_todo"] : 0;
+
+            // PDO Instance
+            $conn = my_db_conn();
+
+            // Transaction Start
+            $conn->beginTransaction();
+
+            $arr_prepare = [
+                "cal_id" => $cal_id
+                ,"td_id" => $td_id
+                ,"check_todo" => $check_todo
+            ];
+
+            my_todolist_update($conn, $arr_prepare);
+            $conn->commit();
+
+            header("Location: /detail.php?cal_id=".$cal_id);
+            exit;
         }
-        if($td_id < 1) {
-            throw new Exception("파라미터 오류");
-        }
-
-        $conn = my_db_conn();
-
-        $arr_prepare1 = [
-            "cal_id" => $cal_id
-        ];
-
-        $result_cal = my_board_select_cal_id($conn, $arr_prepare1);
-
-        $arr_prepare2 = [
-            "cal_id" => $cal_id
-            ,"td_id" => $td_id
-        ];
-
-        $result_todo = my_todolist_select_cal_id($conn, $arr_prepare2);
+        
 
     } catch(Throwable $th) {
         require_once(MY_PATH_ERROR);  // 에러 페이지
@@ -90,7 +115,17 @@
                                 <div class="detail_content_todo">
                                     <form action="./detail.php" method="post">
                                         <div>
-                                            <button type="submit" style="background-image: url(./img/checkbox.png);" class="detail_content_checkbox"></button>
+                                            <?php if($result_todo["check_todo"] === 0) { ?>
+                                                <input type="hidden" id="cal_id" name="cal_id" value="<?php echo $result_cal["cal_id"] ?>">
+                                                <input type="hidden" id="td_id" name="td_id" value="<?php echo $result_todo["td_id"] ?>">
+                                                <input type="hidden" id="check_todo" name="check_todo" value="1">
+                                                <button type="submit" class="detail_content_checkbox"><img src="./img/checkbox.png" alt="" style="width: 40px; height: 40px;"></button>
+                                            <?php } else { ?>
+                                                <input type="hidden" id="cal_id" name="cal_id" value="<?php echo $result_cal["cal_id"] ?>">
+                                                <input type="hidden" id="td_id" name="td_id" value="<?php echo $result_todo["td_id"] ?>">
+                                                <input type="hidden" id="check_todo" name="check_todo" value="0">
+                                                <button type="submit" class="detail_content_checkbox"><img src="./img/checkbox_checked.png" alt="" style="width: 40px; height: 40px;"></button>
+                                            <?php } ?>
                                         </div>
                                     </form>
                                     <div style="padding-top: 5px;"><?php echo $result_todo["content"] ?></div>
@@ -98,8 +133,8 @@
                                 <div class="detail_content_timestamp"><?php echo $result_todo["todo_created_at"] ?></div>
                             </div>
                             <div>
-                                <a href="./update.php"><button type="button" class="btn_small">수정</button></a>
-                                <a href="./list.php"><button type="button" class="btn_small">취소</button></a>
+                                <a href="./update.php?cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">수정</button></a>
+                                <a href="./list.php?cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">취소</button></a>
                             </div>
                         </div>
                     </div>

@@ -149,3 +149,29 @@ function my_todolist_select_cal_id($conn, array $arr_param) {
 
      return $stmt->fetch();
 }
+
+// todolist_update 함수
+function my_todolist_update($conn, array $arr_param) {
+    $sql =
+    " UPDATE todolist_boards "
+    ." SET "
+    ."      check_todo = :check_todo "
+    ." WHERE "
+    ."      cal_id = :cal_id "
+    ." AND  td_id = :td_id "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    $result_cnt = $stmt->rowCount();
+
+    if($result_cnt !== 1) {
+        throw new Exception("update_deco 갯수 오류");
+    }
+    return true;
+}
