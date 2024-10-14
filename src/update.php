@@ -87,6 +87,7 @@ try {
         <div class="main_container">
             <form action="/update.php" method="post">
                 <input type="hidden" name="cal_id" value="<?php echo $result_cal["cal_id"] ?>">
+                <input type="hidden" name="td_id" value="<?php echo $result_todo["td_id"] ?>">
                 <div class="main_container_box">
                     <div class="main_box_left"></div>
                     <div class="detail_container_box">
