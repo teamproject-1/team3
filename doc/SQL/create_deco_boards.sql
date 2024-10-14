@@ -5,10 +5,7 @@ CREATE TABLE deco_boards (
 	,cal_id				BIGINT(20) UNSIGNED 	NOT NULL
 	,weather				VARCHAR(1000)
 	,emotion				VARCHAR(1000)
-	,theme_tape			VARCHAR(1000)
-	,theme_sticker1	VARCHAR(1000)
-	,theme_sticker2	VARCHAR(1000)
-	,theme_sticker3	VARCHAR(1000)
+	,theme				CHAR(1)					DEFAULT '3'		COMMENT '0이면 동물, 1이면 식물, 2면 픽셀, 3은 없음'
 );
 
 ALTER TABLE deco_boards
