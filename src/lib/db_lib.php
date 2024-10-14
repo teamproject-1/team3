@@ -66,7 +66,7 @@ function my_board_update($conn, array $arr_param) {
     " UPDATE todolist_boards "
     ." SET "
     ."      content =:content "
-    ."      ,updated_at =NOW() "
+    ."      ,todo_updated_at =NOW() "
     ." WHERE "
     ."      cal_id =:cal_id "
     ;
