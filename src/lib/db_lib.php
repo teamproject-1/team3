@@ -60,6 +60,32 @@ function my_board_update_deco($conn, array $arr_param) {
     return true;
 }
 
+// update 함수
+function my_board_update($conn, array $arr_param) {
+    $sql =
+    " UPDATE todolist_boards "
+    ." SET "
+    ."      content =:content "
+    ."      ,updated_at =NOW() "
+    ." WHERE "
+    ."      cal_id =:cal_id "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    $result_cnt = $stmt->rowCount();
+
+    if($result_cnt !== 1) {
+        throw new Exception("update_deco 갯수 오류");
+    }
+    return true;
+}
+
 // 메모 인서트 
 function my_memo_insert($conn, $arr_param) {
     $sql =
