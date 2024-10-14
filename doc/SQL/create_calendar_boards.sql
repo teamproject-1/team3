@@ -14,7 +14,3 @@ CREATE TABLE calendar_boards (
 );
 
 
-	,memo_content		VARCHAR(500)
-	,memo_created_at 	TIMESTAMP 				DEFAULT CURRENT_TIMESTAMP()
-	,memo_updated_at 	TIMESTAMP 				DEFAULT CURRENT_TIMESTAMP()
-	,memo_deleted_at 	TIMESTAMP
