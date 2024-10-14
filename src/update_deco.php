@@ -7,6 +7,7 @@ $weather = null;
 $emotion = null;
 $theme = null;
 
+
 try {
     if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
         // GET 처리
