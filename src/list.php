@@ -14,24 +14,25 @@
     $total_day = date('t', $time); // 2. 현재 달의 총 날짜
     $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
 
-    if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
-        try{
-            $conn = my_db_conn();
+
+    try{
+        $conn = my_db_conn();
+
+        if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST") {
             $arr_prepare = [
                 "memo_content" => $_POST["memo_content"]
             ];
 
             $result = my_memo_insert($conn, $arr_prepare);
-
-        }catch(Throwable $th) {
-            require_once(MY_PATH_ERROR);
-            exit;
         }
+    }catch(Throwable $th) {
+        require_once(MY_PATH_ERROR);
+        exit;
     }
 
+    $result2 = my_memo_select($conn);
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,21 +121,16 @@
                             <button type="submit" class="list_memo_insert_btn">확인</button>
                         </div>
                     </form>        
-
-                    <div class="list_memo_box">
-                        <div class="list_memo_area">
-                            <?php echo $result["memo_content"] ?>
+                    <?php
+                    foreach($result2 as $item) {
+                    ?>
+                        <div class="list_memo_box">
+                            <div class="list_memo_area"><?php echo $item["memo_content"] ?></div>
+                            <button class="list_memo_input_btn" type="button"> <img class="list_btn_img" src="./img/delete_icon.png" alt=""></button>
                         </div>
-                        <button class="list_memo_input_btn" type="button"> <img class="list_btn_img" src="./img/delete_icon.png" alt=""></button>
-                    </div>
-
-                    <div class="list_memo_box">
-                        <div class="list_memo_area">
-                        
-                        </div>
-                        <button class="list_memo_input_btn" type="button"> <img class="list_btn_img" src="./img/delete_icon.png" alt=""></button>
-                    </div>
-                    
+                    <?php
+                    }
+                    ?>
                 </div>
 
                       

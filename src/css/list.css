@@ -130,6 +130,7 @@
 
 .list_memo_box {
     display: flex;
+    margin-top: 7px;
 }
 
 .list_memo_area {
