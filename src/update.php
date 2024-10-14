@@ -60,6 +60,7 @@ try {
 
         $conn->commit();
 
+        // 커밋하고 돌아갈때 detail.php 에 cal_id, td_id둘다 출력 인가? (detail,update,delete 하나로 맞추기)
         header("Location: /detail.php?cal_id=".$cal_id."&td_id=".$td_id);
         exit;
     }
@@ -131,7 +132,7 @@ try {
                                 </div>
                                 <div>
                                     <button type="submit" class="btn_small">확인</button>
-                                    <a href="/detail.php?date=<?php echo $result_cal["year"].".".$result_cal["month"].".".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">취소</button></a>
+                                    <a href="/detail.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">취소</button></a>
                                 </div>
                             </div>
                         </div>
