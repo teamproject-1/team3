@@ -40,11 +40,8 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
             <div class="main_box_right">
                     <div class="stick_box">
                         <div class="stick">
-                            <img src="/img/emotion/list_emotion_angry.png" alt="">                                
-                        </div>
-                        <div class="stick"> 
-                            <img src="/img/emotion/list_emotion_sad.png" alt="">  
-                        </div>
+                            <img src="/img/main_small_img.png" alt="">                                
+                        </div>                       
                     </div>                             
                     
                     <div class="main_box_left_calender">
