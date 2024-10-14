@@ -3,7 +3,9 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_PATH_DB_LIB);
 
 $conn = null;
-
+$weather = null;
+$emotion = null;
+$theme = null;
 
 try {
     if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
@@ -28,27 +30,69 @@ try {
         $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
         $weather = isset($_POST["weather"]) ? $_POST["weather"] : "";
         $emotion = isset($_POST["emotion"]) ? $_POST["emotion"] : "";
-        $theme_tape = isset($_POST["theme_tape"]) ? $_POST["theme_tape"] : "";
-        $theme_sticker1 = isset($_POST["theme_sticker1"]) ? $_POST["theme_sticker1"] : "";
-        $theme_sticker2 = isset($_POST["theme_sticker2"]) ? $_POST["theme_sticker2"] : "";
-        $theme_sticker3 = isset($_POST["theme_sticker3"]) ? $_POST["theme_sticker3"] : "";
-
+        $theme = isset($_POST["theme"]) ? $_POST["theme"] : "";
         if($cal_id < 1) {
             throw new Exception("파라미터 오류");
         }
 
         $conn = my_db_conn();
 
+        // 날씨 POST 처리시 출력
+        if($_POST["weather"] === "weather_sun") {
+            $weather = "/img/weather/list_weather_sun.png";
+        } else if($_POST["weather"] === "weather_cloud") {
+            $weather = "/img/weather/list_weather_sun.png";
+        } else if($_POST["weather"] === "weather_rain") {
+            $weather = "/img/weather/list_weather_rain.png";
+        } else if($_POST["weather"] === "weather_snow") {
+            $weather = "/img/weather/list_weather_snow.png";
+        } else if($_POST["weather"] === "weather_null") {
+            $weather = "";
+        } else {
+            throw new Exception("날씨 오류");
+        }
+
+        // 감정 POST 처리시 출력
+        if($_POST["emotion"] === "emotion_happy") {
+            $emotion = "/img/emotion/list_emotion_happy.png";
+        } else if($_POST["emotion"] === "emotion_sad") {
+            $weather = "/img/emotion/list_emotion_sad.png";
+        } else if($_POST["emotion"] === "emotion_angry") {
+            $weather = "/img/emotion/list_emotion_angry.png";
+        } else if($_POST["emotion"] === "emotion_unrest") {
+            $weather = "/img/emotion/list_emotion_unrest.png";
+        } else if($_POST["emotion"] === "emotion_tired") {
+            $weather = "/img/emotion/list_emotion_tired.png";
+        } else if($_POST["emotion"] === "emotion_calm") {
+            $weather = "/img/emotion/list_emotion_calm.png";
+        } else if($_POST["emotion"] === "emotion_null") {
+            $weather = "";
+        } else {
+            throw new Exception("감정 오류");
+        }
+
+         // 테마 $theme 에 값을 담음 (0,1,2,3)
+        if($_POST["theme"] === "theme_animal") {
+            $theme = "0";
+        } else if($_POST["theme"] === "theme_plant") {
+            $theme = "1";
+        } else if($_POST["theme"] === "theme_pixel") {
+            $theme = "2";
+        } else if($_POST["theme"] === "theme_null") {
+            $theme = "3";
+        } else {
+            throw new Exception("테마 오류");
+        }
+
+
+        
         $arr_prepare = [
             "cal_id" => $cal_id
             ,"weather" => $_POST["weather"]
             ,"emotion" => $_POST["emotion"]
-            ,"theme_tape" => $_POST["theme_tape"]
-            ,"theme_sticker1" => $_POST["theme_sticker1"]
-            ,"theme_sticker2" => $_POST["theme_sticker2"]
-            ,"theme_sticker3" => $_POST["theme_sticker3"]
+            ,"theme" => $_POST["theme"]
         ];
-
+        
         my_board_update_deco($conn, $arr_prepare);
 
         $conn->commit();
@@ -63,7 +107,6 @@ try {
     require_once(MY_PATH_ERROR);
     exit;
 }
-
 
 ?>
 
@@ -138,7 +181,7 @@ try {
                             </div>
 
                             <div class="update_deco_content">
-                                <input type="radio" id="theme_null" name="theme" value="weather_null">
+                                <input type="radio" id="theme_null" name="theme" value="theme_null">
                                 <label class="update_deco_image image_null" for="theme_null"></label>
                                 <p>없음</p>
                             </div>

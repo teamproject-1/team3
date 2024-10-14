@@ -38,10 +38,9 @@ function my_board_update_deco($conn, array $arr_param) {
     " UPDATE deco_boards "
     ."      weather =:weather "
     ."      emotion =:emotion "
-    ."      theme_tape =:theme_tape "
-    ."      theme_sticker1 =:theme_sticker1 "
-    ."      theme_sticker2 =:theme_sticker2 "
-    ."      theme_sticker3 =:theme_sticker3 "
+    ."      theme =:theme "
+    ."      deco_created_at =:NOW() "
+    ."      deco_updated_at =:NOW() "
     // 데코 생성일,수정일도 deco_boards에 만들어야 하나..?
     ." WHERE "
     ."      cal_id =:cal_id "
