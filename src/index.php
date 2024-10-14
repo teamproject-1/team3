@@ -11,7 +11,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/index.css">
-    <title>Document</title>
+    <title>인덱스페이지</title>
 </head>
 <body>
     <main>

@@ -14,6 +14,8 @@ $start_week = date('w', $time); // 1. 시작 요일
 $total_day = date('t', $time); // 2. 현재 달의 총 날짜
 $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,7 +24,7 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/main.css">
-    <title>Document</title>
+    <title>메인페이지</title>
 </head>
 <body>
     <main>
@@ -30,14 +32,15 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
             <div class="main_container_box">
                     <div class="main_box_left">
                         <div class= "main_img_box">
-                             <div class="main_img"> 
+                             <div class="main_img">
+                                
                              </div>
                         </div>
                     </div>
             <div class="main_box_right">
                     <div class="stick_box">
                         <div class="stick">
-                            <img src="./img/emotion/list_emotion_angry.png" alt="">                                
+                            <img src="/img/emotion/list_emotion_angry.png" alt="">                                
                         </div>
                         <div class="stick"> 
                             <img src="./img/emotion/list_emotion_sad.png" alt="">  
