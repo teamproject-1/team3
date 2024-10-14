@@ -69,6 +69,8 @@ function my_board_update($conn, array $arr_param) {
     ."      ,todo_updated_at =NOW() "
     ." WHERE "
     ."      cal_id =:cal_id "
+    ." AND  td_id =:td_id "
+
     ;
 
     $stmt = $conn->prepare($sql);
