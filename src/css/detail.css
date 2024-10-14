@@ -118,27 +118,6 @@
     background-color: transparent;
 }
 
-#check {
-    display: none;
-}
-
-#check+label {
-    display: block;
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    background-image: url('../img/checkbox.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-/* check되었을 때 */
-#check:checked+label {
-    background-image: url('../img/checkbox_checked.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
 .detail_content_timestamp {
     font-size: 1.2rem;
 }
