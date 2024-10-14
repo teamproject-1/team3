@@ -1,3 +1,22 @@
+<?php 
+
+    require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+    require_once(MY_PATH_DB_LIB);
+
+    // GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
+    $year = isset($_GET['year']) ? $_GET['year'] : date('Y');
+    // GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
+    $month = isset($_GET['month']) ? $_GET['month'] : date('m');
+
+    $date = "$year-$month-01"; // 현재 날짜
+    $time = strtotime($date); // 현재 날짜의 타임스탬프
+    $start_week = date('w', $time); // 1. 시작 요일
+    $total_day = date('t', $time); // 2. 현재 달의 총 날짜
+    $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +39,29 @@
                 <div class="list_box_left_calender">
                     <div class="calendar">
                         <div class="month">
-                            <a href=""><button class="list_month_btn" type="button"> < </button> </a>
-                            <h1>2024.10.11</h1>
-                            <a href=""><button class="list_month_btn" type="button"> > </button> </a>
+                            
+                            <!-- 현재가 1월이라 이전 달이 작년 12월인경우 -->
+                            <?php if ($month == 1): ?>
+                                <!-- 작년 12월 -->
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year-1 ?>&month=12"> < </a>
+                            <?php else: ?>
+                                <!-- 이번 년 이전 월 -->
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>"> < </a>
+                            <?php endif ?>
+
+                            <h1><?php echo "$year 년 $month 월" ?></h1>
+                            
+                            <!-- 현재가 12월이라 다음 달이 내년 1월인경우 -->
+                            <?php if ($month == 12): ?>
+                                <!-- 내년 1월 -->
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year+1 ?>&month=1"> > </a>
+                            <?php else: ?>
+                                <!-- 이번 년 다음 월 -->
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>"> > </a>
+                            <?php endif ?>
                         </div>
+
+                        <!-- 월화수목금토일 -->
                         <div class="weekdays">
                             <div class="color">sun</div>
                             <div>mon</div>
@@ -33,43 +71,26 @@
                             <div>fri</div>
                             <div class="color">sat</div>
                         </div>
-                        <div class="days">
-                          <div class="day"></div>
-                          <div class="day"></div>
-                          <div class="day">1</div>
-                          <div class="day">2</div>
-                          <div class="day">3</div>
-                          <div class="day">4</div>
-                          <div class="day">5</div>
-                          <div class="day">6</div>
-                          <div class="day">7</div>
-                          <div class="day">8</div>
-                          <div class="day">9</div>
-                          <div class="day">10</div>
-                          <div class="day">11</div>
-                          <div class="day">12</div>
-                          <div class="day">13</div>
-                          <div class="day">14</div>
-                          <div class="day">15</div>
-                          <div class="day">16</div>
-                          <div class="day">17</div>
-                          <div class="day">18</div>
-                          <div class="day">19</div>
-                          <div class="day">20</div>
-                          <div class="day">21</div>
-                          <div class="day">22</div>
-                          <div class="day">23</div>
-                          <div class="day">24</div>
-                          <div class="day">25</div>
-                          <div class="day">26</div>
-                          <div class="day">27</div>
-                          <div class="day">28</div>
-                          <div class="day">29</div>
-                          <div class="day">30</div>
-                          <div class="day">31</div>
-                          <div class="day"></div>
-                          <div class="day"></div>
-                          <div class="day"></div>
+
+                        <div>
+                            <div>
+                                <!-- 총 주차를 반복합니다. -->
+                                <?php for ($n = 1, $i = 0; $i < $total_week; $i++): ?> 
+                                    <div class="days"> 
+                                        <!-- 1일부터 7일 (한 주) -->
+                                        <?php for ($k = 0; $k < 7; $k++): ?> 
+                                            <div class="day"> 
+                                                <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
+                                                <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ): ?>
+                                                    <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
+                                                    <a class="list_a_color" href="/detail.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $n ?>"><?php echo $n++ ?></a>
+                                                <?php endif ?>
+                                            </div> 
+                                        <?php endfor; ?> 
+                                    </div> 
+                                <?php endfor; ?> 
+
+                            </div>
                         </div>
                       </div>
                 </div>

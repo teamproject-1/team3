@@ -61,3 +61,50 @@ function my_board_update_deco($conn, array $arr_param) {
     }
     return true;
 }
+
+// 메모 인서트 
+function my_memo_insert($conn, $arr_param) {
+    $sql =
+    " INSERT INTO calendar_boards ( "
+    ." memo_content "
+    ." ) "
+    ." VALUES ( "
+    ." :memo_content "
+    ." ) "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    $result_cnt = $stmt->rowCount();
+    
+    if($result_cnt !== 1) {
+        throw new Exception("insert count 이상");
+    }
+
+    return true;
+}
+
+// function my_memo_select($conn, $arr_param) {
+//     $sql =
+//     " SELECT "
+//     ." memo_content "
+//     ." from "
+//     ." calendar_boards "
+//     ." WHERE "
+//     ." id = :id "
+//     ;
+
+//     $stmt = $conn->prepare($sql);
+//     $result_flg = $stmt->execute($arr_param);
+
+//     if(!$result_flg) {
+//         throw new Exception("쿼리 실행 실패");
+//     }
+
+//     return $stmt->fetchAll();
+// }
