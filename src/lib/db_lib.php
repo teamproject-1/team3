@@ -86,3 +86,24 @@ function my_memo_insert($conn, $arr_param) {
 
     return true;
 }
+
+function my_todolist_select_cal_id($conn, array $arr_param) {
+    $sql =
+    " SELECT "
+    ."      * "
+    ." FROM "
+    ."      todolist_boards "
+    ." WHERE "
+    ."      cal_id = :cal_id "
+    ." AND  td_id = :td_id "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+     return $stmt->fetch();
+}
