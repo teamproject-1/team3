@@ -140,7 +140,7 @@ try {
                         <div class="update_left_weather">
                             <div class="update_deco_title">날씨</div>
                             <div class="update_deco_content">
-                                <input type="radio" id="weather_sun" name="weather" value="weather_sun">
+                                <input type="radio" id="weather_sun" name="weather" value="weather_sun" checked>
                                 <label class="update_deco_image image_sun" for="weather_sun"></label>
                                 <p>맑음</p>
                             </div> 
@@ -173,7 +173,7 @@ try {
                         <div class="update_left_theme">
                             <div class="update_deco_title">테마</div>
                             <div class="update_deco_content">
-                                <input type="radio" id="theme_animal" name="theme" value="theme_animal">
+                                <input type="radio" id="theme_animal" name="theme" value="theme_animal" checked>
                                 <label class="update_deco_image image_animal" for="theme_animal"></label>
                                 <p>동물</p>
                             </div>
@@ -204,7 +204,7 @@ try {
 
                             <div class="emotion_first">
                                 <div class="update_deco_content">
-                                    <input type="radio" id="emotion_happy" name="emotion" value="emotion_happy">
+                                    <input type="radio" id="emotion_happy" name="emotion" value="emotion_happy" checked>
                                     <label class="update_deco_image image_happy" for="emotion_happy"></label>
                                     <p>기쁨</p>
                                 </div>
