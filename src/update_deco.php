@@ -11,20 +11,21 @@ $theme = null;
 try {
     if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
         // GET 처리
-        $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;
+        // $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;
         $year = isset($_GET["year"]) ? $_GET["year"] : 0;
         $month = isset($_GET["month"]) ? $_GET["month"] : 0;
         $day = isset($_GET["day"]) ? $_GET["day"] : 0;
-        // $cal_id = 1;
 
-        if($cal_id < 1) {
-            throw new Exception("파라미터 오류");
-        }
+        // if($cal_id < 1) {
+        //     throw new Exception("파라미터 오류");
+        // }
 
         $conn = my_db_conn();
 
         $arr_prepare = [
-            "cal_id" => $cal_id
+            "year" => $year
+            ,"month" => $month
+            ,"day" => $day 
         ];
 
         $result = my_board_select_cal_id($conn, $arr_prepare);
@@ -33,16 +34,16 @@ try {
         $conn = my_db_conn();
         $conn->beginTransaction();
         // POST 처리
-        $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
+        // $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
         $weather = isset($_POST["weather"]) ? $_POST["weather"] : "";
         $emotion = isset($_POST["emotion"]) ? $_POST["emotion"] : "";
         $theme = isset($_POST["theme"]) ? $_POST["theme"] : "";
         $year = isset($_POST["year"]) ? $_POST["year"] : 0;
         $month = isset($_POST["month"]) ? $_POST["month"] : 0;
         $day = isset($_POST["day"]) ? $_POST["day"] : 0;
-        if($cal_id < 1) {
-            throw new Exception("파라미터 오류");
-        }
+        // if($cal_id < 1) {
+        //     throw new Exception("파라미터 오류");
+        // }
 
 
         // 날씨 POST 처리시 출력
@@ -93,7 +94,9 @@ try {
         }
 
         $arr_prepare = [
-            "cal_id" => $cal_id
+            "year" => $year
+            ,"month" => $month
+            ,"day" => $day 
             ,"weather" => $weather
             ,"emotion" => $emotion
             ,"theme" => $theme
@@ -102,8 +105,7 @@ try {
         my_board_update_deco($conn, $arr_prepare);
 
         $conn->commit();
-        // commit 하고 돌아갔을때 리스트페이지(날짜, cal_id) 출력 
-        header("Location: /list.php?date=".$year."-".$month."-".$day."&cal_id=".$cal_id);
+        header("Location: /list.php?year=".$year."&month=".$month."&day=".$day);
         exit;
     }
 }catch(Throwable $th){
@@ -129,10 +131,9 @@ try {
     <main>
         <div class="main_container">
             <form action="/update_deco.php" method="post">
-                <input type="hidden" name="cal_id" value="<?php echo $result["cal_id"] ?>">
-                <input type="hidden" name="year" value="<?php echo $result_cal["year"] ?>">
-                <input type="hidden" name="month" value="<?php echo $result_cal["month"] ?>">
-                <input type="hidden" name="day" value="<?php echo $result_cal["day"] ?>">
+                <input type="hidden" name="year" value="<?php echo $result["year"] ?>">
+                <input type="hidden" name="month" value="<?php echo $result["month"] ?>">
+                <input type="hidden" name="day" value="<?php echo $result["day"] ?>">
                 <div class="main_container_box">
                     <div class="main_box_left">
                         <!-- 날씨 데코 -->
@@ -250,7 +251,7 @@ try {
                         </div>
                         <div class="update_btn">
                             <button class="btn_small" type="submit">확인</button>
-                            <a href="/list.php?date=<?php echo $result["year"]."-".$result["month"]."-".$result["day"] ?>&cal_id=<?php echo $result["cal_id"] ?>"><button class="btn_small" type="button">취소</button></a>
+                            <a href="/list.php?year=<?php echo $result["year"] ?>&month=<?php echo $result["month"] ?>&day=<?php echo $result["day"] ?>"><button class="btn_small" type="button">취소</button></a>
                         </div>
                     </div>
                 </div>

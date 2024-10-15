@@ -45,7 +45,9 @@ function my_board_update_deco($conn, array $arr_param) {
     ."      ,theme =:theme "
     ."      ,updated_at =NOW() "
     ." WHERE "
-    ."      cal_id =:cal_id "
+    ."      year =:year "
+    ." AND  month =:month "
+    ." AND  day =:day "
     ;
 
     $stmt = $conn->prepare($sql);
