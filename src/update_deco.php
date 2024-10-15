@@ -99,8 +99,8 @@ try {
         my_board_update_deco($conn, $arr_prepare);
 
         $conn->commit();
-
-        header("Location: /list.php?cal_id=".$cal_id);
+        // commit 하고 돌아갔을때 리스트페이지(날짜, cal_id) 출력 
+        header("Location: /list.php?date=".$year."-".$month."-".$day."&cal_id=".$cal_id);
         exit;
     }
 }catch(Throwable $th){

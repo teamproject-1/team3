@@ -60,8 +60,8 @@ try {
 
         $conn->commit();
 
-        // 커밋하고 돌아갈때 detail.php 에 cal_id, td_id둘다 출력 인가? (detail,update,delete 하나로 맞추기)
-        header("Location: /detail.php?cal_id=".$cal_id."&td_id=".$td_id);
+        // commit 하고 돌아갔을때 상세페이지(날짜, cal_id, td_id) 출력 
+        header("Location: /detail.php?date=".$year."-".$month."-".$day."&cal_id=".$cal_id."&td_id=".$td_id);
         exit;
     }
 }catch(Throwable $th){
@@ -92,6 +92,7 @@ try {
                 <div class="main_container_box">
                     <div class="main_box_left"></div>
                     <div class="detail_container_box">
+                        <!-- 위쪽 마스킹 테이프 -->
                         <div class="detail_top_tape" 
                             <?php if($result_cal["theme"] === '0') { ?>
                                 style="background-image: url(/img/theme/animal_masking.jfif);">
@@ -132,10 +133,11 @@ try {
                                 </div>
                                 <div>
                                     <button type="submit" class="btn_small">확인</button>
-                                    <a href="/detail.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">취소</button></a>
+                                    <a href="/detail.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">취소</button></a>
                                 </div>
                             </div>
                         </div>
+                        <!-- 아래쪽 마스킹 테이프 -->
                         <div class="detail_top_tape" 
                             <?php if($result_cal["theme"] === '0') { ?>
                                 style="background-image: url(/img/theme/animal_masking.jfif);">
