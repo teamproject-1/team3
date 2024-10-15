@@ -187,9 +187,17 @@
             <!-- 오른쪽 책 -->
             <div class="main_box_right">
                 <div class="main_box_right_sticker">
-                    <div><img class="list_sticker_img" src="./img/weather/list_weather_sun.png" alt=""></div>
+                    <div>
+                        <?php if(!is_null($result1[0]["weather"])) { ?>
+                            <img class="list_sticker_img" src="<?php echo $result1[0]["weather"] ?>" alt="">
+                        <?php } ?>
+                    </div>
                     <div class="list_box_right_now"><?php echo $year."-".str_pad((string)$month, 2, "0", STR_PAD_LEFT)."-".str_pad((string)$day, 2, "0", STR_PAD_LEFT) ?> </div>
-                    <div><img class="list_sticker_img" src="./img/emotion/list_emotion_happy.png" alt=""></div>
+                    <div>
+                        <?php if(!is_null($result1[0]["emotion"])) { ?>
+                            <img class="list_sticker_img" src="<?php echo $result1[0]["emotion"] ?>" alt="">
+                        <?php } ?>
+                    </div>
                 </div>
                 <!-- 어떻게 하는지 모르겠지만? 전기수분들이 한거에서 A테그로 체크이미지 넣어서 하는것 따라함 -->
 
@@ -228,7 +236,7 @@
             </div>
                 
         </div>
-        <a class="list_deco_btn" href="./update_deco.php?year=<?php echo $year ?>&month=<?php echo $month ?>$day=<?php echo $day ?>">데코</a>
+        <a class="list_deco_btn" href="./update_deco.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $day ?>">데코</a>
            
     </div>
     
