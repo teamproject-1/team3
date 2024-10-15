@@ -6,11 +6,11 @@
     $conn = null;
     try{
         // GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
-        $year = isset($_GET['year']) ? $_GET['year'] : date('Y');
+        $year = !empty($_GET['year']) ? $_GET['year'] : date('Y');
         // GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
-        $month = isset($_GET['month']) ? $_GET['month'] : date('m');
+        $month = !empty($_GET['month']) ? $_GET['month'] : date('m');
         // GET으로 넘겨 받은 day값이 있다면 넘겨 받은걸 day변수에 적용하고 없다면 현재 일
-        $day = isset($_GET['day']) ? $_GET['day'] : date('d');
+        $day = !empty($_GET['day']) ? $_GET['day'] : date('d');
 
         $date = "$year-$month-01"; // 현재 월 1일(문자열 2024-10-01)
         $time = strtotime($date); // 현재 월 1일의 타임스탬프
