@@ -196,7 +196,7 @@
                 <div class="list_box_right_detail scrollable">
                     <?php foreach($result as $item) { ?>
                         <div class="list_box_right_detail_box">
-                            <a href="detail.php"><span><?php echo $item["content"] ?></span></a>
+                            <a href="detail.php?year=<?php echo $year ?>&month=<?php echo $month ?>$day=<?php echo $day ?>"><span><?php echo $item["content"] ?></span></a>
                             <form action="./todolist_check.php" method="post">
                                 <input type="hidden" id="cal_id" name="cal_id" value="<?php echo $item["cal_id"] ?>">
                                 <input type="hidden" id="year" name="year" value="<?php echo $item["year"] ?>">
@@ -228,7 +228,7 @@
             </div>
                 
         </div>
-        <a class="list_deco_btn" href="./update_deco.html">데코</a>
+        <a class="list_deco_btn" href="./update_deco.php?year=<?php echo $year ?>&month=<?php echo $month ?>$day=<?php echo $day ?>">데코</a>
            
     </div>
     
