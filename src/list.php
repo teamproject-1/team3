@@ -85,15 +85,15 @@
                         <div>
                             <div>
                                 <!-- 총 주차를 반복합니다. -->
-                                <?php for ($day = 1, $i = 0; $i < $total_week; $i++): ?> 
+                                <?php for ($n = 1, $i = 0; $i < $total_week; $i++): ?> 
                                     <div class="days"> 
                                         <!-- 1일부터 7일 (한 주) -->
                                         <?php for ($k = 0; $k < 7; $k++): ?> 
                                             <div class="day"> 
                                                 <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
-                                                <?php if ( ($day > 1 || $k >= $start_week) && ($total_day >= $day) ): ?>
+                                                <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ): ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
-                                                    <a class="list_a_color" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $day ?>"><?php echo $day++ ?></a>
+                                                    <a class="list_a_color" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $n ?>"><?php echo $n++ ?></a>
                                                 <?php endif ?>
                                             </div> 
                                         <?php endfor; ?> 
@@ -144,37 +144,25 @@
             <div class="main_box_right">
                 <div class="main_box_right_sticker">
                     <div><img class="list_sticker_img" src="./img/weather/list_weather_sun.png" alt=""></div>
-                    <div class="list_box_right_now">2024-10-15</div>
+                    <div class="list_box_right_now"><?php echo $year."-".$month."-".$day ?> </div>
                     <div><img class="list_sticker_img" src="./img/emotion/list_emotion_happy.png" alt=""></div>
                 </div>
                 <!-- 어떻게 하는지 모르겠지만? 전기수분들이 한거에서 A테그로 체크이미지 넣어서 하는것 따라함 -->
-                <div class="list_box_right_detail">
-                    <div class="list_box_right_detail_box">
-                        <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
+
+                <form action="">
+                    <?php foreach($result3 as $item) { ?>
+                        <div class="list_box_right_detail">
+
+                            <div class="list_box_right_detail_box">
+                                <span>TO DO LIST</span>
+                                <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
+                        </div>
+                    <?php } ?> 
+                    <div>
+                        <input class="list_box_right_input_text" type="text"> <button type="submit" class="btn_small">추가</button>
+                        <div class="list_box_right_underscore"></div>
                     </div>
-                    <div class="list_box_right_detail_box">
-                        <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
-                    </div>
-                    <div class="list_box_right_detail_box">
-                        <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
-                    </div>
-                    <div class="list_box_right_detail_box">
-                        <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
-                    </div>
-                    <div class="list_box_right_detail_box">
-                        <span>TO DO LIST</span>
-                        <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
-                    </div>
-                </div>
-              
-                <div>
-                    <input class="list_box_right_input_text" type="text"> <button type="button" class="btn_small">추가</button>
-                    <div class="list_box_right_underscore"></div>
-                </div>
+                </form>
 
             </div>
                 

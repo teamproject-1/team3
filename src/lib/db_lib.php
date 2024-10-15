@@ -233,3 +233,25 @@ function my_todolist_delete($conn, array $arr_param) {
     }
     return true;
 }
+
+// todolist_select 함수
+function my_todolist_list_select($conn, $arr_param) {
+    $sql =
+    " SELECT "
+    ."      * "
+    ." FROM "
+    ."      todolist_boards "
+    ." WHERE "
+    ."      deleted_at is null "
+    ." AND cal_id = :cal_id "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    return $stmt->fetchAll();
+}
