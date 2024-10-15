@@ -238,12 +238,18 @@ function my_todolist_delete($conn, array $arr_param) {
 function my_todolist_list_select($conn, $arr_param) {
     $sql =
     " SELECT "
-    ."      * "
+    ." * "
     ." FROM "
+    ."      calendar_boards "
+    ." JOIN "
     ."      todolist_boards "
+    ." ON "
+    ."      calendar_boards.cal_id = todolist_boards.cal_id "
     ." WHERE "
-    ."      deleted_at is null "
-    ." AND cal_id = :cal_id "
+    ."      todolist_boards.todo_deleted_at is null "
+    ."      AND calendar_boards.year = :year "
+    ."      AND calendar_boards.month = :month "
+    ."      AND calendar_boards.day = :day "
     ;
 
     $stmt = $conn->prepare($sql);
@@ -254,4 +260,56 @@ function my_todolist_list_select($conn, $arr_param) {
     }
 
     return $stmt->fetchAll();
+}
+
+// todo list 추가 함수
+function todolist_content_insert ($conn, $arr_param) {
+    $sql =
+    " INSERT INTO todolist_boards ( "
+    ." cal_id "
+    ." ,content "
+    ." ) "
+    ." VALUES ( "
+    ." :cal_id "
+    ." ,:content "
+    ." ) "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    $result_cnt = $stmt->rowCount();
+    
+    if($result_cnt !== 1) {
+        throw new Exception("insert count 이상");
+    }
+
+    return true;
+}
+
+// todo list 함수 cal_id 가져오기
+function calendar_boards_select_cal_id ($conn, $arr_param) {
+    $sql =
+    " SELECT "
+    ."      cal_id "
+    ." FROM "
+    ."      calendar_boards "
+    ." WHERE "
+    ."     year = :year "
+    ." AND month = :month "
+    ." AND day = :day " 
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    return $stmt->fetch();
 }

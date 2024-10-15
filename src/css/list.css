@@ -166,6 +166,7 @@
 
 .list_box_right_detail {
     width: 350px;
+    overflow-y: scroll;
 }
 
 .list_btn_img {
@@ -212,7 +213,8 @@
     height: 45px;
     width: 300px;
     background-color: transparent;
-    /* border-style: none; */
+    border-style: none;
+    font-size: 25px;
     /* 보더스타일논 크기확인하려고 주석처리 */
 }
 
@@ -226,8 +228,10 @@
 .list_box_right_detail_box {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 25px;
     margin-top: 25px;
+    color: #000;
 }
 
 .list_deco_btn {
@@ -249,4 +253,17 @@
 .list_deco_btn:hover {
     background-color: #8C9D34;
     cursor: pointer;
+}
+
+.detail_content_checkbox {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border: none;
+    background-color: transparent;
+}
+
+a:visited {
+    color: #000;
 }

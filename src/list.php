@@ -4,11 +4,11 @@
     require_once(MY_PATH_DB_LIB);
 
     // GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
-    $year = isset($_GET['year']) ? $_GET['year'] : date('Y');
+    $year = !empty($_GET['year']) ? $_GET['year'] : date('Y');
     // GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
-    $month = isset($_GET['month']) ? $_GET['month'] : date('m');
+    $month = !empty($_GET['month']) ? $_GET['month'] : date('m');
     // GET으로 넘겨 받은 day값이 있다면 넘겨 받은걸 day변수에 적용하고 없다면 현재 월
-    $day = isset($_GET['day']) ? $_GET['day'] : date('d');
+    $day = !empty($_GET['day']) ? $_GET['day'] : date('d');
 
     $date = "$year-$month-01"; // 현재 날짜
     $time = strtotime($date); // 현재 날짜의 타임스탬프
@@ -21,6 +21,17 @@
         $conn = my_db_conn();
 
         $result2 = my_memo_select($conn);
+
+        $arr_param = [ 
+            "year" => $_GET["year"],
+            "month" => $_GET["month"],
+            "day" => $_GET["day"]
+        ];
+       
+        $result = my_todolist_list_select($conn, $arr_param);
+        // var_dump($result); 확인용
+        
+
     }catch(Throwable $th) {
         require_once(MY_PATH_ERROR);
         exit;
@@ -53,21 +64,21 @@
                             <!-- 현재가 1월이라 이전 달이 작년 12월인경우 -->
                             <?php if ($month == 1): ?>
                                 <!-- 작년 12월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year-1 ?>&month=12"> < </a>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year-1 ?>&month=12&day=1"> < </a>
                             <?php else: ?>
                                 <!-- 이번 년 이전 월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>"> < </a>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>&day=1"> < </a>
                             <?php endif ?>
 
-                            <h1><?php echo "$year 년 $month 월" ?></h1>
+                            <h1><?php echo $year."년 ".str_pad((string)$month, 2, "0", STR_PAD_LEFT)."월" ?></h1>
                             
                             <!-- 현재가 12월이라 다음 달이 내년 1월인경우 -->
                             <?php if ($month == 12): ?>
                                 <!-- 내년 1월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year+1 ?>&month=1"> > </a>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year+1 ?>&month=1&day=1"> > </a>
                             <?php else: ?>
                                 <!-- 이번 년 다음 월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>"> > </a>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>&day=1"> > </a>
                             <?php endif ?>
                         </div>
 
@@ -144,23 +155,40 @@
             <div class="main_box_right">
                 <div class="main_box_right_sticker">
                     <div><img class="list_sticker_img" src="./img/weather/list_weather_sun.png" alt=""></div>
-                    <div class="list_box_right_now"><?php echo $year."-".$month."-".$day ?> </div>
+                    <div class="list_box_right_now"><?php echo $year."-".str_pad((string)$month, 2, "0", STR_PAD_LEFT)."-".str_pad((string)$day, 2, "0", STR_PAD_LEFT) ?> </div>
                     <div><img class="list_sticker_img" src="./img/emotion/list_emotion_happy.png" alt=""></div>
                 </div>
                 <!-- 어떻게 하는지 모르겠지만? 전기수분들이 한거에서 A테그로 체크이미지 넣어서 하는것 따라함 -->
 
-                <form action="">
-                    <?php foreach($result3 as $item) { ?>
-                        <div class="list_box_right_detail">
-
-                            <div class="list_box_right_detail_box">
-                                <span>TO DO LIST</span>
-                                <a href=""><img class="check_box__img_size" src="./img/checkbox.png" alt=""></a>
+                <div class="list_box_right_detail scrollable">
+                    <?php foreach($result as $item) { ?>
+                        <div class="list_box_right_detail_box">
+                            <a href="detail.php"><span><?php echo $item["content"] ?></span></a>
+                            <form action="./todolist_check.php" method="post">
+                                <input type="hidden" id="cal_id" name="cal_id" value="<?php echo $item["cal_id"] ?>">
+                                <input type="hidden" id="year" name="year" value="<?php echo $item["year"] ?>">
+                                <input type="hidden" id="month" name="month" value="<?php echo $item["month"] ?>">
+                                <input type="hidden" id="day" name="day" value="<?php echo $item["day"] ?>">
+                                <input type="hidden" id="td_id" name="td_id" value="<?php echo $item["td_id"] ?>">
+                                <?php if($item["check_todo"] === 0) { ?>
+                                    <input type="hidden" id="check_todo" name="check_todo" value="1">
+                                    <button type="submit" class="detail_content_checkbox"><img src="./img/checkbox.png" alt="" style="width: 40px; height: 40px;"></button>
+                                <?php } else { ?>
+                                    <input type="hidden" id="check_todo" name="check_todo" value="0">
+                                    <button type="submit" class="detail_content_checkbox"><img src="./img/checkbox_checked.png" alt="" style="width: 40px; height: 40px;"></button>
+                                <?php } ?>
+                            </form>
                         </div>
-                    <?php } ?> 
+                    <?php } ?>
+                </div> 
+
+                <form method="POST" action="/todolist_insert.php">
                     <div>
-                        <input class="list_box_right_input_text" type="text"> <button type="submit" class="btn_small">추가</button>
+                        <input name="content" required class="list_box_right_input_text" type="text"> <button type="submit" class="btn_small">추가</button>
                         <div class="list_box_right_underscore"></div>
+                        <input type="hidden" name="year" value="<?php echo $year ?>">
+                        <input type="hidden" name="month" value="<?php echo $month ?>">
+                        <input type="hidden" name="day" value="<?php echo $day ?>">
                     </div>
                 </form>
 
