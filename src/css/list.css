@@ -230,7 +230,6 @@
     align-items: center;
     font-size: 25px;
     margin-top: 25px;
-    color: #000;
 }
 
 .list_deco_btn {
@@ -263,6 +262,10 @@
     background-color: transparent;
 }
 
-a:visited {
+.list_box_right_atag {
+    color: #000;
+}
+
+.list_box_right_atag:visited {
     color: #000;
 }
