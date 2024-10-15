@@ -89,3 +89,7 @@ img {
 .error_btn_error {
     width: 200px;
 }
+
+.error_btn_error:hover {
+    background-color: #899B2D;
+}
