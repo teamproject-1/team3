@@ -32,6 +32,7 @@
         // 가져온 $result가 비어있으면 insert
         if(empty($result1)) {
             my_calendar_insert($conn, $arr_prepare);
+            $result1 = my_calendar_select($conn, $arr_prepare);
         }
 
         $result2 = my_memo_select($conn);
