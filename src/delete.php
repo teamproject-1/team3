@@ -31,6 +31,9 @@
             $result_todo = my_todolist_select_cal_id($conn, $arr_prepare2);
         } else {
             $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
+            $year = isset($_POST["year"]) ? $_POST["year"] : 0;
+            $month = isset($_POST["month"]) ? $_POST["month"] : 0;
+            $day = isset($_POST["day"]) ? $_POST["day"] : 0;
             $td_id = isset($_POST["td_id"]) ? $_POST["td_id"] : 0;
 
             // PDO Instance
@@ -47,7 +50,7 @@
             my_todolist_delete($conn, $arr_prepare);
             $conn->commit();
 
-            header("Location: /list.php?cal_id=".$cal_id);
+            header("Location: /list.php?&date=".$year."-".$month."-".$day."&cal_id=".$cal_id);
             exit;
         }
         
@@ -76,6 +79,7 @@
             <div class="main_container_box">
                 <div class="main_box_left"></div>
                 <div class="detail_container_box">
+                    <!-- 위쪽 마스킹 테이프 -->
                     <div class="detail_top_tape" 
                         <?php if($result_cal["theme"] === '0') { ?>
                             style="background-image: url(/img/theme/animal_masking.jfif);">
@@ -88,6 +92,7 @@
                         <?php } ?>
                     </div>
                     <div class="detail_back_green">
+                        <!-- 스티커 -->
                         <?php if($result_cal["theme"] === '0') { ?>
                             <img src="./img/theme/animal_sticker1.png" alt="" class="detail_sticker1">
                             <img src="./img/theme/animal_sticker2.png" alt="" class="detail_sticker2">
@@ -116,13 +121,17 @@
                             <form action="./delete.php" method="post">
                                 <div>
                                     <input type="hidden" id="cal_id" name="cal_id" value="<?php echo $result_cal["cal_id"] ?>">
+                                    <input type="hidden" id="year" name="year" value="<?php echo $result_cal["year"] ?>">
+                                    <input type="hidden" id="month" name="month" value="<?php echo $result_cal["month"] ?>">
+                                    <input type="hidden" id="day" name="day" value="<?php echo $result_cal["day"] ?>">
                                     <input type="hidden" id="td_id" name="td_id" value="<?php echo $result_todo["td_id"] ?>">
                                     <button type="submit" class="btn_small">삭제</button>
-                                    <a href="./detail.php?cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">취소</button></a>
+                                    <a href="./detail.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">취소</button></a>
                                 </div>
                             </form>
                         </div>
                     </div>
+                    <!-- 아래쪽 마스킹 테이프 -->
                     <div class="detail_bottom_tape"
                         <?php if($result_cal["theme"] === '0') { ?>
                             style="background-image: url(/img/theme/animal_masking.jfif);">

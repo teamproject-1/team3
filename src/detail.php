@@ -81,6 +81,7 @@
             <div class="main_container_box">
                 <div class="main_box_left"></div>
                 <div class="detail_container_box">
+                    <!-- 위쪽 마스킹 테이프 -->
                     <div class="detail_top_tape" 
                         <?php if($result_cal["theme"] === '0') { ?>
                             style="background-image: url(/img/theme/animal_masking.jfif);">
@@ -93,6 +94,7 @@
                         <?php } ?>
                     </div>
                     <div class="detail_back_green">
+                        <!-- 스티커 -->
                         <?php if($result_cal["theme"] === '0') { ?>
                             <img src="./img/theme/animal_sticker1.png" alt="" class="detail_sticker1">
                             <img src="./img/theme/animal_sticker2.png" alt="" class="detail_sticker2">
@@ -106,7 +108,8 @@
                             <img src="./img/theme/pixel_sticker2.png" alt="" class="detail_sticker2">
                             <img src="./img/theme/pixel_sticker3.png" alt="" class="detail_sticker3">
                         <?php } else {} ?>
-                        <a href="./delete.php?cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>">
+                        <!-- 삭제 버튼 -->
+                        <a href="./delete.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>">
                             <button type="button" class="btn_small detail_delete">
                                 <img src="./img/delete_icon.png" alt="" class="detail_delete_img">
                                 <img src="./img/delete_hover_icon.png" alt="" class="detail_delete_hover">
@@ -136,11 +139,12 @@
                                 <div class="detail_content_timestamp"><?php echo $result_todo["todo_created_at"] ?></div>
                             </div>
                             <div>
-                                <a href="./update.php?cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">수정</button></a>
-                                <a href="./list.php?cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">취소</button></a>
+                                <a href="./update.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">수정</button></a>
+                                <a href="./list.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">취소</button></a>
                             </div>
                         </div>
                     </div>
+                    <!-- 아래쪽 마스킹 테이프 -->
                     <div class="detail_bottom_tape"
                         <?php if($result_cal["theme"] === '0') { ?>
                             style="background-image: url(/img/theme/animal_masking.jfif);">
