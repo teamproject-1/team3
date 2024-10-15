@@ -10,6 +10,9 @@ try {
     if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
         $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;  // 달력 id
         $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id
+        $year = isset($_GET["year"]) ? $_GET["year"] : 0;
+        $month = isset($_GET["month"]) ? $_GET["month"] : 0;
+        $day = isset($_GET["day"]) ? $_GET["day"] : 0;
 
         // $cal_id = 1;
         // $td_id = 1;
@@ -41,6 +44,9 @@ try {
          $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
          $td_id = isset($_POST["td_id"]) ? $_POST["td_id"] : 0;
          $content = isset($_POST["content"]) ? $_POST["content"] : "";
+         $year = isset($_POST["year"]) ? $_POST["year"] : 0;
+         $month = isset($_POST["month"]) ? $_POST["month"] : 0;
+         $day = isset($_POST["day"]) ? $_POST["day"] : 0;
 
          if($cal_id < 1 || $content === "") {
             throw new Exception("파라미터 오류");
@@ -89,6 +95,9 @@ try {
             <form action="/update.php" method="post">
                 <input type="hidden" name="cal_id" value="<?php echo $result_cal["cal_id"] ?>">
                 <input type="hidden" name="td_id" value="<?php echo $result_todo["td_id"] ?>">
+                <input type="hidden" name="year" value="<?php echo $result_cal["year"] ?>">
+                <input type="hidden" name="month" value="<?php echo $result_cal["month"] ?>">
+                <input type="hidden" name="day" value="<?php echo $result_cal["day"] ?>">
                 <div class="main_container_box">
                     <div class="main_box_left"></div>
                     <div class="detail_container_box">

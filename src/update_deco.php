@@ -37,6 +37,9 @@ try {
         $weather = isset($_POST["weather"]) ? $_POST["weather"] : "";
         $emotion = isset($_POST["emotion"]) ? $_POST["emotion"] : "";
         $theme = isset($_POST["theme"]) ? $_POST["theme"] : "";
+        $year = isset($_POST["year"]) ? $_POST["year"] : 0;
+        $month = isset($_POST["month"]) ? $_POST["month"] : 0;
+        $day = isset($_POST["day"]) ? $_POST["day"] : 0;
         if($cal_id < 1) {
             throw new Exception("파라미터 오류");
         }
@@ -127,6 +130,9 @@ try {
         <div class="main_container">
             <form action="/update_deco.php" method="post">
                 <input type="hidden" name="cal_id" value="<?php echo $result["cal_id"] ?>">
+                <input type="hidden" name="year" value="<?php echo $result_cal["year"] ?>">
+                <input type="hidden" name="month" value="<?php echo $result_cal["month"] ?>">
+                <input type="hidden" name="day" value="<?php echo $result_cal["day"] ?>">
                 <div class="main_container_box">
                     <div class="main_box_left">
                         <!-- 날씨 데코 -->
