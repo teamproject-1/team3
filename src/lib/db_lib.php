@@ -171,9 +171,15 @@ function my_todolist_select_cal_id($conn, array $arr_param) {
     ."      * "
     ." FROM "
     ."      todolist_boards "
+    ." JOIN "
+    ."      calendar_boards "
+    ." ON "
+    ."      todolist_boards.cal_id = calendar_boards.cal_id "
     ." WHERE "
-    ."      cal_id = :cal_id "
-    ." AND  td_id = :td_id "
+    ."      calendar_boards.year = :year "
+    ." AND calendar_boards.month = :month "
+    ." AND calendar_boards.day = :day "
+    ." AND todolist_boards.td_id = :td_id "
     ;
 
     $stmt = $conn->prepare($sql);

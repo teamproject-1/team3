@@ -5,22 +5,15 @@
     $conn = null;
     try{
         if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
-            // $year = isset($_GET["year"]) ? $_GET["year"] : 0;  // 달력 year
-            // $month = isset($_GET["month"]) ? $_GET["month"] : 0;  // 달력 month
-            // $day = isset($_GET["day"]) ? $_GET["day"] : 0;  // 달력 day
-            // $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id           
-            
-            // $year = 2024;
-            // $month = 10;
-            // $day = 15;
-            // $td_id = 1;
+            $year = isset($_GET["year"]) ? $_GET["year"] : 0;  // 달력 year
+            $month = isset($_GET["month"]) ? $_GET["month"] : 0;  // 달력 month
+            $day = isset($_GET["day"]) ? $_GET["day"] : 0;  // 달력 day   
+            $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // td_id
 
-            // if(($year < 1) || ($month < 1) || ($day < 1)) {
-            //     throw new Exception("파라미터 오류");
-            // }
+            if(($year < 1) || ($month < 1) || ($day < 1)) {
+                throw new Exception("파라미터 오류");
+            }
 
-            $cal_id = 1;
-            $td_id = 1;
             if($td_id < 1) {
                 throw new Exception("파라미터 오류");
             }
@@ -28,13 +21,17 @@
             $conn = my_db_conn();
 
             $arr_prepare1 = [
-                "cal_id" => $cal_id
+                "year" => $year
+                ,"month" => $month
+                ,"day" => $day
             ];
 
             $result_cal = my_board_select_cal_id($conn, $arr_prepare1);
 
             $arr_prepare2 = [
-                "cal_id" => $cal_id
+                "year" => $year
+                ,"month" => $month
+                ,"day" => $day
                 ,"td_id" => $td_id
             ];
 
