@@ -189,13 +189,13 @@
             <div class="main_box_right">
                 <div class="main_box_right_sticker">
                     <div>
-                        <?php if(!is_null($result1[0]["weather"])) { ?>
+                        <?php if(!empty($result1[0]["weather"])) { ?>
                             <img class="list_sticker_img" src="<?php echo $result1[0]["weather"] ?>" alt="">
                         <?php } ?>
                     </div>
                     <div class="list_box_right_now"><?php echo $year."-".str_pad((string)$month, 2, "0", STR_PAD_LEFT)."-".str_pad((string)$day, 2, "0", STR_PAD_LEFT) ?> </div>
                     <div>
-                        <?php if(!is_null($result1[0]["emotion"])) { ?>
+                        <?php if(!empty($result1[0]["emotion"])) { ?>
                             <img class="list_sticker_img" src="<?php echo $result1[0]["emotion"] ?>" alt="">
                         <?php } ?>
                     </div>
