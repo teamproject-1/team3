@@ -26,7 +26,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                         <!-- 책 타이틀 박스 -->
                         <div class="index_title">
                             <!-- 책 타이틀 -->
-                            <h1>TITLE</h1>
+                            <h1>모두 다.데</h1>
                         </div>
                         <!-- 책  -->
                         <div class="index_img_box">

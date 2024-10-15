@@ -1,3 +1,5 @@
+
+
 /* 책 */
  .index_book {    
     background-color: #637249;
@@ -34,7 +36,9 @@
 
 /* 책 타이틀 박스 */
  .index_title {
-    background-color: #D9D9D9;
+    background-color: #a0bb73;
+    border-radius: 20px;
+    border: 5px solid#698044;
     width: 400px;    
     padding : 15px;
     text-align: center;
