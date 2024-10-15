@@ -260,6 +260,7 @@
     margin-right: 10px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .list_box_right_atag {
