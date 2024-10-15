@@ -20,7 +20,10 @@ function my_board_select_cal_id($conn, array $arr_param) {
     ." FROM "
     ."      calendar_boards "
     ." WHERE "
-    ."      cal_id =:cal_id "
+    ."      year =:year "
+    ." AND  month =:month "
+    ." AND  day =:day "
+
     ;
 
     $stmt = $conn->prepare($sql);
