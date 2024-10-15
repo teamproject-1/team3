@@ -230,6 +230,8 @@
     align-items: center;
     font-size: 25px;
     margin-top: 25px;
+    border: 2px solid#ACBA42;
+    border-width: 0 0 5px 0 ;
 }
 
 .list_deco_btn {
