@@ -1,13 +1,11 @@
 /* 데코 */
 .detail_top_tape {
-    background-image: url(../img/theme/pixel_masking.png);
     background-position: center;
     width: 1200px;
     height: 40px;
 }
 
 .detail_bottom_tape {
-    background-image: url(../img/theme/pixel_masking.png);
     background-position: center;
     width: 1200px;
     height: 40px;
