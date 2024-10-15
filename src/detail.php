@@ -58,7 +58,10 @@
         
 
     } catch(Throwable $th) {
-        require_once(MY_PATH_ERROR);  // 에러 페이지
+        if(!is_null($conn) && $conn->inTransaction()){
+            $conn->rollBack();
+        }
+        require_once(MY_PATH_ERROR);
         exit;
     }
 ?>
@@ -103,7 +106,7 @@
                             <img src="./img/theme/pixel_sticker2.png" alt="" class="detail_sticker2">
                             <img src="./img/theme/pixel_sticker3.png" alt="" class="detail_sticker3">
                         <?php } else {} ?>
-                        <a href="./delete.php">
+                        <a href="./delete.php?cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>">
                             <button type="button" class="btn_small detail_delete">
                                 <img src="./img/delete_icon.png" alt="" class="detail_delete_img">
                                 <img src="./img/delete_hover_icon.png" alt="" class="detail_delete_hover">
