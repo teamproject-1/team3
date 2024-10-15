@@ -5,15 +5,22 @@
     $conn = null;
     try{
         if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
-            // $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;  // 달력 id
-            // $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id
+            // $year = isset($_GET["year"]) ? $_GET["year"] : 0;  // 달력 year
+            // $month = isset($_GET["month"]) ? $_GET["month"] : 0;  // 달력 month
+            // $day = isset($_GET["day"]) ? $_GET["day"] : 0;  // 달력 day
+            // $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id           
+            
+            // $year = 2024;
+            // $month = 10;
+            // $day = 15;
+            // $td_id = 1;
+
+            // if(($year < 1) || ($month < 1) || ($day < 1)) {
+            //     throw new Exception("파라미터 오류");
+            // }
 
             $cal_id = 1;
             $td_id = 1;
-
-            if($cal_id < 1) {
-                throw new Exception("파라미터 오류");
-            }
             if($td_id < 1) {
                 throw new Exception("파라미터 오류");
             }
@@ -109,7 +116,7 @@
                             <img src="./img/theme/pixel_sticker3.png" alt="" class="detail_sticker3">
                         <?php } else {} ?>
                         <!-- 삭제 버튼 -->
-                        <a href="./delete.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>">
+                        <a href="./delete.php?year=<?php echo $result_cal["year"]."&month=".$result_cal["month"]."&day=".$result_cal["day"] ?>&td_id=<?php echo $result_todo["td_id"] ?>">
                             <button type="button" class="btn_small detail_delete">
                                 <img src="./img/delete_icon.png" alt="" class="detail_delete_img">
                                 <img src="./img/delete_hover_icon.png" alt="" class="detail_delete_hover">
@@ -139,8 +146,8 @@
                                 <div class="detail_content_timestamp"><?php echo $result_todo["todo_created_at"] ?></div>
                             </div>
                             <div>
-                                <a href="./update.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">수정</button></a>
-                                <a href="./list.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>"><button type="button" class="btn_small">취소</button></a>
+                                <a href="./update.php?year=<?php echo $result_cal["year"]."&month=".$result_cal["month"]."&day=".$result_cal["day"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">수정</button></a>
+                                <a href="./list.php?year=<?php echo $result_cal["year"]."&month=".$result_cal["month"]."&day=".$result_cal["day"] ?>"><button type="button" class="btn_small">취소</button></a>
                             </div>
                         </div>
                     </div>

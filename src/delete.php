@@ -126,7 +126,7 @@
                                     <input type="hidden" id="day" name="day" value="<?php echo $result_cal["day"] ?>">
                                     <input type="hidden" id="td_id" name="td_id" value="<?php echo $result_todo["td_id"] ?>">
                                     <button type="submit" class="btn_small">삭제</button>
-                                    <a href="./detail.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">취소</button></a>
+                                    <a href="./detail.php?year=<?php echo $result_cal["year"]."&month=".$result_cal["month"]."&day=".$result_cal["day"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">취소</button></a>
                                 </div>
                             </form>
                         </div>

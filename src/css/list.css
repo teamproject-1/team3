@@ -1,15 +1,14 @@
 /* 마스킹 테이프 */
-.list_masking_tape_1{
+.list_masking_tape_top{
+    background-position: center;
     position: absolute;
-    background-image: url(../img/theme/plant_masking.jfif);
     width: 1200px;
     height: 40px;
     margin-left: 600px;
 }
-
-.list_masking_tape_2{
+.list_masking_tape_bottom{
+    background-position: center;
     position: absolute;
-    background-image: url(../img/theme/plant_masking.jfif);
     width: 1200px;
     height: 40px;
     margin-left: 600px;

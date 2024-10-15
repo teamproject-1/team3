@@ -27,10 +27,10 @@
             ,"day" => $day
         ];
         
-        $result = my_calendar_select($conn, $arr_prepare);
+        $result1 = my_calendar_select($conn, $arr_prepare);
 
         // 가져온 $result가 비어있으면 insert
-        if(empty($result)) {
+        if(empty($result1)) {
             my_calendar_insert($conn, $arr_prepare);
         }
 
@@ -43,7 +43,7 @@
         ];
        
         $result = my_todolist_list_select($conn, $arr_param);
-        // var_dump($result); 확인용
+        // var_dump($result); exit; 확인용
         
 
     }catch(Throwable $th) {
@@ -67,9 +67,28 @@
         <div class="main_container_box">
             <!-- 왼쪽책 -->
             <div class="main_box_left">
-                <!-- 마스킹테이프 마진줬음 -->
-                <div class="list_masking_tape_1"></div>
-                <div class="list_masking_tape_2"></div>
+                <div class="list_masking_tape_top"
+                    <?php if($result1[0]["theme"] === '0') { ?>
+                        style="background-image: url(/img/theme/animal_masking.jfif);">
+                    <?php } else if($result1[0]["theme"] === '1') { ?>
+                        style="background-image: url(/img/theme/plant_masking.jfif);">
+                    <?php } else if($result1[0]["theme"] === '2') { ?>
+                        style="background-image: url(/img/theme/pixel_masking.png);">
+                    <?php } else { ?>
+                        style="background-image: url();">
+                    <?php } ?>
+                </div>
+                <div class="list_masking_tape_bottom"
+                    <?php if($result1[0]["theme"] === '0') { ?>
+                        style="background-image: url(/img/theme/animal_masking.jfif);">
+                    <?php } else if($result1[0]["theme"] === '1') { ?>
+                        style="background-image: url(/img/theme/plant_masking.jfif);">
+                    <?php } else if($result1[0]["theme"] === '2') { ?>
+                        style="background-image: url(/img/theme/pixel_masking.png);">
+                    <?php } else { ?>
+                        style="background-image: url();">
+                    <?php } ?>
+                </div>
                 <!-- 달력출력 -->
                 <div class="list_box_left_calender">
                     <div class="calendar">
@@ -78,10 +97,10 @@
                             <!-- 현재가 1월이라 이전 달이 작년 12월인경우 -->
                             <?php if ($month == 1) { ?>
                                 <!-- 작년 12월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year-1 ?>&month=12"> < </a>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year-1 ?>&month=12&day=1"> < </a>
                             <?php } else { ?>
                                 <!-- 이번 년 이전 월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>"> < </a>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>&day=1"> < </a>
                             <?php } ?>
 
                             <h1><?php echo $year."년 ".str_pad((string)$month, 2, "0", STR_PAD_LEFT)."월" ?></h1>
@@ -89,10 +108,10 @@
                             <!-- 현재가 12월이라 다음 달이 내년 1월인경우 -->
                             <?php if ($month == 12) { ?>
                                 <!-- 내년 1월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year+1 ?>&month=1"> > </a>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year+1 ?>&month=1&day=1"> > </a>
                             <?php } else { ?>
                                 <!-- 이번 년 다음 월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>"> > </a>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>&day=1"> > </a>
                             <?php } ?>
                         </div>
 
