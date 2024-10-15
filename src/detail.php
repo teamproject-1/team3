@@ -37,7 +37,9 @@
 
             $result_todo = my_todolist_select_cal_id($conn, $arr_prepare2);
         } else {
-            $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
+            $year = isset($_POST["year"]) ? $_POST["year"] : 0;
+            $month = isset($_POST["month"]) ? $_POST["month"] : 0;
+            $day = isset($_POST["day"]) ? $_POST["day"] : 0;
             $td_id = isset($_POST["td_id"]) ? $_POST["td_id"] : 0;
             $check_todo = isset($_POST["check_todo"]) ? $_POST["check_todo"] : 0;
 
@@ -47,16 +49,24 @@
             // Transaction Start
             $conn->beginTransaction();
 
-            $arr_prepare = [
-                "cal_id" => $cal_id
+            $arr_prepare1 = [
+                "year" => $year
+                ,"month" => $month
+                ,"day" => $day
+            ];
+
+            $result_cal = my_board_select_cal_id($conn, $arr_prepare1);
+
+            $arr_prepare2 = [
+                "cal_id" => $result_cal["cal_id"]
                 ,"td_id" => $td_id
                 ,"check_todo" => $check_todo
             ];
 
-            my_todolist_update($conn, $arr_prepare);
+            my_todolist_update($conn, $arr_prepare2);
             $conn->commit();
 
-            header("Location: /detail.php?cal_id=".$cal_id);
+            header("Location: /detail.php?year=".$year."&month=".$month."&day=".$day."&td_id=".$td_id);
             exit;
         }
         
@@ -126,12 +136,16 @@
                                     <form action="./detail.php" method="post">
                                         <div>
                                             <?php if($result_todo["check_todo"] === 0) { ?>
-                                                <input type="hidden" id="cal_id" name="cal_id" value="<?php echo $result_cal["cal_id"] ?>">
+                                                <input type="hidden" id="year" name="year" value="<?php echo $result_cal["year"] ?>">
+                                                <input type="hidden" id="month" name="month" value="<?php echo $result_cal["month"] ?>">
+                                                <input type="hidden" id="day" name="day" value="<?php echo $result_cal["day"] ?>">
                                                 <input type="hidden" id="td_id" name="td_id" value="<?php echo $result_todo["td_id"] ?>">
                                                 <input type="hidden" id="check_todo" name="check_todo" value="1">
                                                 <button type="submit" class="detail_content_checkbox"><img src="./img/checkbox.png" alt="" style="width: 40px; height: 40px;"></button>
                                             <?php } else { ?>
-                                                <input type="hidden" id="cal_id" name="cal_id" value="<?php echo $result_cal["cal_id"] ?>">
+                                                <input type="hidden" id="year" name="year" value="<?php echo $result_cal["year"] ?>">
+                                                <input type="hidden" id="month" name="month" value="<?php echo $result_cal["month"] ?>">
+                                                <input type="hidden" id="day" name="day" value="<?php echo $result_cal["day"] ?>">
                                                 <input type="hidden" id="td_id" name="td_id" value="<?php echo $result_todo["td_id"] ?>">
                                                 <input type="hidden" id="check_todo" name="check_todo" value="0">
                                                 <button type="submit" class="detail_content_checkbox"><img src="./img/checkbox_checked.png" alt="" style="width: 40px; height: 40px;"></button>
