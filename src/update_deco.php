@@ -244,7 +244,7 @@ try {
                         </div>
                         <div class="update_btn">
                             <button class="btn_small" type="submit">확인</button>
-                            <a href="/list.php?year=<?php echo $result["year"] ?>&month=<?php echo $result["month"] ?>&day=<?php echo $result["day"] ?>&cal_id=<?php echo $result["cal_id"] ?>"><button class="btn_small" type="button">취소</button></a>
+                            <a href="/list.php?date=<?php echo $result["year"]."-".$result["month"]."-".$result["day"] ?>&cal_id=<?php echo $result["cal_id"] ?>"><button class="btn_small" type="button">취소</button></a>
                         </div>
                     </div>
                 </div>

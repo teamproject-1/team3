@@ -8,11 +8,11 @@ $theme = null;
 try {
     // GET 처리
     if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
-        // $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;  // 달력 id
-        // $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id
+        $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;  // 달력 id
+        $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id
 
-        $cal_id = 1;
-        $td_id = 1;
+        // $cal_id = 1;
+        // $td_id = 1;
 
         if($cal_id < 1) {
             throw new Exception("파라미터 오류");
