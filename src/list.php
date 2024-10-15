@@ -3,22 +3,36 @@
     require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
     require_once(MY_PATH_DB_LIB);
 
-    // GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
-    $year = !empty($_GET['year']) ? $_GET['year'] : date('Y');
-    // GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
-    $month = !empty($_GET['month']) ? $_GET['month'] : date('m');
-    // GET으로 넘겨 받은 day값이 있다면 넘겨 받은걸 day변수에 적용하고 없다면 현재 월
-    $day = !empty($_GET['day']) ? $_GET['day'] : date('d');
-
-    $date = "$year-$month-01"; // 현재 날짜
-    $time = strtotime($date); // 현재 날짜의 타임스탬프
-    $start_week = date('w', $time); // 1. 시작 요일
-    $total_day = date('t', $time); // 2. 현재 달의 총 날짜
-    $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
-
-
+    $conn = null;
     try{
+        // GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
+        $year = isset($_GET['year']) ? $_GET['year'] : date('Y');
+        // GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
+        $month = isset($_GET['month']) ? $_GET['month'] : date('m');
+        // GET으로 넘겨 받은 day값이 있다면 넘겨 받은걸 day변수에 적용하고 없다면 현재 일
+        $day = isset($_GET['day']) ? $_GET['day'] : date('d');
+
+        $date = "$year-$month-01"; // 현재 월 1일(문자열 2024-10-01)
+        $time = strtotime($date); // 현재 월 1일의 타임스탬프
+        $start_week = date('w', $time); // 1. 시작 요일  0 은 일요일 , 1은 월요일
+        $total_day = date('t', $time); // 2. 현재 달의 총 날짜  주어진 월의 총 일 수 (28 ~ 31)
+        $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
+
         $conn = my_db_conn();
+
+        // calendar_boards에서 값 가져오기
+        $arr_prepare = [
+            "year" => $year
+            ,"month" => $month
+            ,"day" => $day
+        ];
+        
+        $result = my_calendar_select($conn, $arr_prepare);
+
+        // 가져온 $result가 비어있으면 insert
+        if(empty($result)) {
+            my_calendar_insert($conn, $arr_prepare);
+        }
 
         $result2 = my_memo_select($conn);
 
@@ -62,24 +76,24 @@
                         <div class="month">
                             
                             <!-- 현재가 1월이라 이전 달이 작년 12월인경우 -->
-                            <?php if ($month == 1): ?>
+                            <?php if ($month == 1) { ?>
                                 <!-- 작년 12월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year-1 ?>&month=12&day=1"> < </a>
-                            <?php else: ?>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year-1 ?>&month=12"> < </a>
+                            <?php } else { ?>
                                 <!-- 이번 년 이전 월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>&day=1"> < </a>
-                            <?php endif ?>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>"> < </a>
+                            <?php } ?>
 
                             <h1><?php echo $year."년 ".str_pad((string)$month, 2, "0", STR_PAD_LEFT)."월" ?></h1>
                             
                             <!-- 현재가 12월이라 다음 달이 내년 1월인경우 -->
-                            <?php if ($month == 12): ?>
+                            <?php if ($month == 12) { ?>
                                 <!-- 내년 1월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year+1 ?>&month=1&day=1"> > </a>
-                            <?php else: ?>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year+1 ?>&month=1"> > </a>
+                            <?php } else { ?>
                                 <!-- 이번 년 다음 월 -->
-                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>&day=1"> > </a>
-                            <?php endif ?>
+                                <a class="list_month_btn" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>"> > </a>
+                            <?php } ?>
                         </div>
 
                         <!-- 월화수목금토일 -->

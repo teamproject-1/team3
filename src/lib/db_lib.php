@@ -313,3 +313,52 @@ function calendar_boards_select_cal_id ($conn, $arr_param) {
 
     return $stmt->fetch();
 }
+
+// calendar_board_select 함수
+function my_calendar_select($conn, array $arr_param) {
+    $sql =
+    " SELECT "
+    ."      * "
+    ." FROM "
+    ."      calendar_boards "
+    ." WHERE "
+    ."      year = :year "
+    ." AND  month = :month "
+    ." AND  day = :day "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    return $stmt->fetchAll();
+}
+
+// calendar_board_insert 함수
+function my_calendar_insert($conn, array $arr_param) {
+    $sql =
+    " INSERT INTO calendar_boards ( "
+    ."      year "
+    ."      ,month "
+    ."      ,day "
+    ." ) "
+    ." VALUES ( "
+    ."      :year "
+    ."      ,:month "
+    ."      ,:day "
+    ." ) "
+    ;
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+    $result_cnt = $stmt->rowCount();
+    if($result_cnt !== 1) {
+        throw new Exception("insert count 이상");
+    }
+    return true;
+}
