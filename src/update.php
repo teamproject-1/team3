@@ -8,16 +8,13 @@ $theme = null;
 try {
     // GET 처리
     if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
-        $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;  // 달력 id
-        $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id
         $year = isset($_GET["year"]) ? $_GET["year"] : 0;
         $month = isset($_GET["month"]) ? $_GET["month"] : 0;
         $day = isset($_GET["day"]) ? $_GET["day"] : 0;
+        $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;
 
-        // $cal_id = 1;
-        // $td_id = 1;
 
-        if($cal_id < 1) {
+        if(($year < 1) || ($month < 1) || ($day < 1)) {
             throw new Exception("파라미터 오류");
         }
         if($td_id < 1) {
@@ -27,13 +24,17 @@ try {
         $conn = my_db_conn();
 
         $arr_prepare1 = [
-            "cal_id" => $cal_id
+            "year" => $year
+            ,"month" => $month
+            ,"day" => $day 
         ];
 
         $result_cal = my_board_select_cal_id($conn, $arr_prepare1);
 
         $arr_prepare2 = [
-            "cal_id" => $cal_id
+            "year" => $year
+            ,"month" => $month
+            ,"day" => $day
             ,"td_id" => $td_id
         ];
 
@@ -41,14 +42,14 @@ try {
 
     }else {
          // POST 처리
-         $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
+        //  $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
          $td_id = isset($_POST["td_id"]) ? $_POST["td_id"] : 0;
          $content = isset($_POST["content"]) ? $_POST["content"] : "";
          $year = isset($_POST["year"]) ? $_POST["year"] : 0;
          $month = isset($_POST["month"]) ? $_POST["month"] : 0;
          $day = isset($_POST["day"]) ? $_POST["day"] : 0;
 
-         if($cal_id < 1 || $content === "") {
+         if($content === "") {
             throw new Exception("파라미터 오류");
          }
 
@@ -57,17 +58,25 @@ try {
          $conn->beginTransaction();
          
          $arr_prepare = [
-            "cal_id" => $cal_id
-            ,"td_id" => $td_id
-            ,"content" => $content
+            "year" => $year
+            ,"month" => $month
+            ,"day" => $day 
+        ];
+
+        $result_cal_id = my_board_select_cal_id($conn, $arr_prepare);
+
+        $arr_prepare = [
+
+            "cal_id" =>$result_cal_id["cal_id"]
+            ,"td_id" =>$td_id
+            ,"content" =>$content
         ];
 
          my_board_update($conn, $arr_prepare);
 
         $conn->commit();
 
-        // commit 하고 돌아갔을때 상세페이지(날짜, cal_id, td_id) 출력 
-        header("Location: /detail.php?date=".$year."-".$month."-".$day."&cal_id=".$cal_id."&td_id=".$td_id);
+        header("Location: /list.php?year=".$year."&month=".$month."&day=".$day."&td_id=".$td_id);
         exit;
     }
 }catch(Throwable $th){
@@ -93,7 +102,6 @@ try {
     <main>
         <div class="main_container">
             <form action="/update.php" method="post">
-                <input type="hidden" name="cal_id" value="<?php echo $result_cal["cal_id"] ?>">
                 <input type="hidden" name="td_id" value="<?php echo $result_todo["td_id"] ?>">
                 <input type="hidden" name="year" value="<?php echo $result_cal["year"] ?>">
                 <input type="hidden" name="month" value="<?php echo $result_cal["month"] ?>">
@@ -142,7 +150,7 @@ try {
                                 </div>
                                 <div>
                                     <button type="submit" class="btn_small">확인</button>
-                                    <a href="/detail.php?date=<?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?>&cal_id=<?php echo $result_cal["cal_id"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">취소</button></a>
+                                    <a href="/detail.php?year=<?php echo $result_cal["year"] ?>&month=<?php echo $result_cal["month"] ?>&day=<?php echo $result_cal["day"] ?>&td_id=<?php echo $result_todo["td_id"] ?>"><button type="button" class="btn_small">취소</button></a>
                                 </div>
                             </div>
                         </div>

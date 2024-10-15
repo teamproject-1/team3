@@ -75,7 +75,6 @@ function my_board_update($conn, array $arr_param) {
     ." WHERE "
     ."      cal_id =:cal_id "
     ." AND  td_id =:td_id "
-
     ;
 
     $stmt = $conn->prepare($sql);
