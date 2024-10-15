@@ -116,6 +116,7 @@
     margin-right: 10px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .detail_content_timestamp {
