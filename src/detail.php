@@ -130,7 +130,7 @@
                             </button>
                         </a>
                         <div class="detail_back_white">
-                            <div class="detail_content_date"><?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?></div>
+                            <div class="detail_content_date"><?php echo $result_cal["year"]."-".str_pad((string)$result_cal["month"], 2, "0", STR_PAD_LEFT)."-".str_pad((string)$result_cal["day"], 2, "0", STR_PAD_LEFT) ?></div>
                             <div>
                                 <div class="detail_content_todo">
                                     <form action="./detail.php" method="post">

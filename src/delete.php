@@ -125,7 +125,7 @@
                                 <p>삭제하시면 영구적으로 사라집니다.</p>
                                 <p>정말로 삭제 하시겠습니까?</p>
                             </div>
-                            <div class="detail_content_date"><?php echo $result_cal["year"]."-".$result_cal["month"]."-".$result_cal["day"] ?></div>
+                            <div class="detail_content_date"><?php echo $result_cal["year"]."-".str_pad((string)$result_cal["month"], 2, "0", STR_PAD_LEFT)."-".str_pad((string)$result_cal["day"], 2, "0", STR_PAD_LEFT) ?></div>
                             <div>
                                 <div class="detail_content_todo">
                                     <div style="padding-top: 5px;"><?php echo $result_todo["content"] ?></div>
