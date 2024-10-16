@@ -48,54 +48,54 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                     <div class="calendar">
                         <div class="month">
                             <!-- 현재가 1월이라 이전 달이 작년 12월인경우 -->
-                            <?php if ($month == 1): ?>
+                            <?php if ($month == 1) { ?>
                                 <!-- 작년 12월 -->
                                 <a class="main_month_btn" href="/main.php?year=<?php echo $year-1 ?>&month=12"> < </a>
-                            <?php else: ?>
+                                <?php } else { ?>
                                 <!-- 이번 년 이전 월 -->
                                 <a class="main_month_btn" href="/main.php?year=<?php echo $year ?>&month=<?php echo $month-1 ?>"> < </a>
-                            <?php endif ?>
+                            <?php } ?>
                             <!-- .str_pad 함수 사용해서 x월 표현 -->
                             <h1><?php echo $year."년 ".str_pad($month, 2, "0", STR_PAD_LEFT)."월" ?></h1>
                             <!-- 현재가 12월이라 다음 달이 내년 1월인경우 -->
-                            <?php if ($month == 12): ?>
+                            <?php if ($month == 12) { ?>
                                 <!-- 내년 1월 -->
                                 <a class="main_month_btn" href="/main.php?year=<?php echo $year+1 ?>&month=1"> > </a>
-                            <?php else: ?>
+                            <?php } else { ?>
                                 <!-- 이번 년 다음 월 -->
                                 <a class="main_month_btn" href="/main.php?year=<?php echo $year ?>&month=<?php echo $month+1 ?>"> > </a>
-                            <?php endif ?>
+                            <?php } ?>
                         </div>
                         <!-- 월화수목금토일 -->
                         <div class="weekdays">
-                            <div class="color">sun</div>
+                            <div class="color sunday">sun</div>
                             <div>mon</div>
                             <div class="color">tue</div>
                             <div>wed</div>
                             <div class="color">thur</div>
                             <div>fri</div>
-                            <div class="color">sat</div>
+                            <div class="color saturday" >sat</div>
                         </div>
                         <div>
                             <div>
                                 <!-- 총 주차를 반복합니다. -->
-                                <?php for ($d = 1, $i = 0; $i < $total_week; $i++): ?>
+                                <?php for ($d = 1, $i = 0; $i < $total_week; $i++) { ?>                                
                                     <div class="days">
                                         <!-- 1일부터 7일 (한 주) -->
-                                        <?php for ($k = 0; $k < 7; $k++): ?>
+                                        <?php for ($k = 0; $k < 7; $k++) { ?>
                                             <div class="day">
                                                 <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
-                                                <?php if ( ($d > 1 || $k >= $start_week) && ($total_day >= $d) ): ?>
+                                                <?php if ( ($d > 1 || $k >= $start_week) && ($total_day >= $d)) { ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->                               
                                                     <a class="main_a_color" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>"><?php echo $d++ ?></a>
-                                                <?php endif ?>
+                                                <?php } ?>
                                             </div>
-                                        <?php endfor; ?>
+                                        <?php } ?>
                                     </div>
-                                <?php endfor; ?>
+                                <?php } ?>
                             </div>
                         </div>
-                      </div>
+                </div>
             </div>
         </div>
     </main>

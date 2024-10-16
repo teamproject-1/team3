@@ -86,7 +86,13 @@ a {
     text-align: center;
     margin-bottom: 5px;
 }
-
+/* 토일 색상 */
+.weekdays .sunday {
+    color:#de1212;
+}
+.weekdays .saturday {
+    color:#1264de;
+}
 
 .days {
     display: grid;
@@ -102,6 +108,7 @@ a {
     font-size: 16px;
     transition: all 0.3s;
 }
+
 /* 일 오버시 배경화면 줌인아웃 */
 .day:hover {
     background-color: #637249;
