@@ -131,13 +131,13 @@
 
                         <!-- 월화수목금토일 -->
                         <div class="weekdays">
-                            <div class="color sunday">sun</div>
+                            <div class="color">sun</div>
                             <div class="color2">mon</div>
                             <div class="color">tue</div>
                             <div class="color2">wed</div>
                             <div class="color">thur</div>
                             <div class="color2">fri</div>
-                            <div class="color saturday">sat</div>
+                            <div class="color">sat</div>
                         </div>
 
                         <div>
@@ -152,6 +152,7 @@
                                                 <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ) { ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
                                                     <p <?php if($result1[0]["day"] === $n) { ?> class="list_day_color" <?php } ?>>
+
                                                         <?php echo $n ?>
                                                     </p>
                                                     <?php if(in_array($year."-".$month."-".$n, $arr_set_todolist_on_date)) { ?><div class="stamp"></div> <?php } ?>

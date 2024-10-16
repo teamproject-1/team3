@@ -25,14 +25,6 @@
     background-color: #fff;
 }
 
-.saturday {
-    color: #1264de
-}
-
-.sunday {
-    color: #de1212;
-}
-
 .main_box_left {
     display: grid;
     justify-items: center;
@@ -262,7 +254,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 25px;
-    margin-top: 25px;
+    margin-top: 20px;
     border: 2px solid#ACBA42;
     border-width: 0 0 5px 0 ;
 }
