@@ -76,7 +76,7 @@ try {
 
         $conn->commit();
 
-        header("Location: /list.php?year=".$year."&month=".$month."&day=".$day."&td_id=".$td_id);
+        header("Location: /detail.php?year=".$year."&month=".$month."&day=".$day."&td_id=".$td_id);
         exit;
     }
 }catch(Throwable $th){
