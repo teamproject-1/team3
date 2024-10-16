@@ -36,6 +36,8 @@
 }
 .color {
     background-color: #B2C999;    
+    margin: auto 0;
+    border: 3px solid #B2C999;
 }
 .border_color {
     border: 3px solid #B2C999;
@@ -122,7 +124,7 @@ a {
 }
 /* 메인 달력 일 색상 오버시 효과 */
 .main_a_color:hover {
-   background-color: #BCCE5D ;
+   background-color: #B2C999 ;
     color : #000;
     transform: scale(1.2);
 
@@ -135,3 +137,6 @@ a {
     color: blue;
 }
 
+.main_today_date {
+    background-color: #B2C999;
+}

@@ -2,6 +2,7 @@
 
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_PATH_DB_LIB);
+$today = date("Y-m-d");
 
 // GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
 $year = !empty($_GET['year']) ? $_GET['year'] : date('Y');
@@ -93,7 +94,11 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                                             <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
                                                 <?php if ( ($d > 1 || $k >= $start_week) && ($total_day >= $d)) { ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->                               
+                                                    <p <?php if($today === ($year."-".$month."-".$d)) { ?>
+                                                        class="main_today_date"
+                                                        <?php } ?>>
                                                     <?php echo $d++ ?>
+                                                    </p>
                                                 <?php } ?>                                           
                                         </a>
                                         <?php } ?>
