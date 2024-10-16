@@ -95,7 +95,16 @@
                     <?php } ?>
                 </div>
                 <!-- 달력출력 -->
-                <div class="list_box_left_calender">
+                <div class="list_box_left_calender"                 
+                    <?php if($result1[0]["theme"] === '0') { ?>
+                        style="background-image: url(/img/theme/cal_animal.jfif);">
+                    <?php } else if($result1[0]["theme"] === '1') { ?>
+                        style="background-image: url(/img/theme/cal_plant.jfif);">
+                    <?php } else if($result1[0]["theme"] === '2') { ?>
+                        style="background-image: url(/img/theme/cal_pixel.jfif);">
+                    <?php } else { ?>
+                        style="background-color: #fff;">
+                    <?php } ?>
                     <div class="calendar">
                         <div class="month">
                             
