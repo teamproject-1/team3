@@ -272,3 +272,8 @@
 .list_box_right_atag:visited {
     color: #000;
 }
+
+.check_todo_complete {
+    text-decoration: line-through;
+    color: #929292;
+}
