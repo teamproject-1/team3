@@ -47,7 +47,14 @@
     background-size: cover;
     width: 400px;
     height: 450px;    
-} 
+}
+
+.index_img_box:active {
+    background-image: url(../img/masking_plant.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /* 책 줌인 */
 .index_book:hover { 
     transform: scale(1.2);

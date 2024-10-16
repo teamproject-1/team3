@@ -46,12 +46,19 @@
 
 /* 책 이미지 박스 */
  .index_img_box {
-    background-image: url(../img/book.jfif);
+    background-image: url(../img/book.png);
     background-repeat: no-repeat;
     background-size: cover;
     width: 400px;
     height: 450px;    
 } 
+
+.index_img_box:hover {
+    background-image: url(../img/book_hover.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /* 책 줌인 */
 .index_book:hover { 
     transform: scale(1.2);
