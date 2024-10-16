@@ -131,6 +131,11 @@
     height: 30px;
     border-style: none;
     background-color: #B2C999;
+    padding: 0 10px;
+}
+
+.list_memo_input_text:focus {
+    outline: none;
 }
 
 .list_memo_box {
@@ -215,6 +220,11 @@
     border-style: none;
     font-size: 25px;
     /* 보더스타일논 크기확인하려고 주석처리 */
+    padding: 0 10px;
+}
+
+.list_box_right_input_text:focus {
+    outline: none;
 }
 
 .list_box_right_underscore {
