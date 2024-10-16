@@ -5,12 +5,15 @@
     $conn = null;
     try{
         if(strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
-            $cal_id = isset($_GET["cal_id"]) ? $_GET["cal_id"] : 0;  // 달력 id
+            $year = isset($_GET["year"]) ? $_GET["year"] : 0;  // 달력 year
+            $month = isset($_GET["month"]) ? $_GET["month"] : 0;  // 달력 month
+            $day = isset($_GET["day"]) ? $_GET["day"] : 0;  // 달력 day
             $td_id = isset($_GET["td_id"]) ? $_GET["td_id"] : 0;  // 투두리스트 id
 
-            if($cal_id < 1) {
+            if(($year < 1) || ($month < 1) || ($day < 1)) {
                 throw new Exception("파라미터 오류");
             }
+
             if($td_id < 1) {
                 throw new Exception("파라미터 오류");
             }
@@ -18,19 +21,22 @@
             $conn = my_db_conn();
 
             $arr_prepare1 = [
-                "cal_id" => $cal_id
+                "year" => $year
+                ,"month" => $month
+                ,"day" => $day
             ];
 
             $result_cal = my_board_select_cal_id($conn, $arr_prepare1);
 
             $arr_prepare2 = [
-                "cal_id" => $cal_id
+                "year" => $year
+                ,"month" => $month
+                ,"day" => $day
                 ,"td_id" => $td_id
             ];
 
             $result_todo = my_todolist_select_cal_id($conn, $arr_prepare2);
         } else {
-            $cal_id = isset($_POST["cal_id"]) ? $_POST["cal_id"] : 0;
             $year = isset($_POST["year"]) ? $_POST["year"] : 0;
             $month = isset($_POST["month"]) ? $_POST["month"] : 0;
             $day = isset($_POST["day"]) ? $_POST["day"] : 0;
@@ -42,15 +48,23 @@
             // Transaction Start
             $conn->beginTransaction();
 
-            $arr_prepare = [
-                "cal_id" => $cal_id
+            $arr_prepare1 = [
+                "year" => $year
+                ,"month" => $month
+                ,"day" => $day
+            ];
+
+            $result_cal = my_board_select_cal_id($conn, $arr_prepare1);
+
+            $arr_prepare2 = [
+                "cal_id" => $result_cal["cal_id"]
                 ,"td_id" => $td_id
             ];
 
-            my_todolist_delete($conn, $arr_prepare);
+            my_todolist_delete($conn, $arr_prepare2);
             $conn->commit();
 
-            header("Location: /list.php?&date=".$year."-".$month."-".$day."&cal_id=".$cal_id);
+            header("Location: /list.php?year=".$year."&month=".$month."&day=".$day);
             exit;
         }
         
@@ -120,7 +134,6 @@
                             </div>
                             <form action="./delete.php" method="post">
                                 <div>
-                                    <input type="hidden" id="cal_id" name="cal_id" value="<?php echo $result_cal["cal_id"] ?>">
                                     <input type="hidden" id="year" name="year" value="<?php echo $result_cal["year"] ?>">
                                     <input type="hidden" id="month" name="month" value="<?php echo $result_cal["month"] ?>">
                                     <input type="hidden" id="day" name="day" value="<?php echo $result_cal["day"] ?>">
