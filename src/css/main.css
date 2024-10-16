@@ -1,14 +1,13 @@
 /* 메인 이미지 박스 */
 .main_img_box {
     display: flex;
-    flex-direction :column;
     justify-content: center;
     align-items: center;
-    height: 65vh;
+    height: 650px;
 }
 /* 메인 이미지 */
 .main_img {
-    background-image: url(../img/book.jfif);
+    background-image: url(../img/book_hover.png);
     background-repeat: no-repeat;
     background-size: cover;
     width: 400px;
