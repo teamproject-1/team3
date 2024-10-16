@@ -69,20 +69,20 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                         <!-- 월화수목금토일 -->
                         <div class="weekdays">
                             <div class="color">sun</div>
-                            <div>mon</div>
+                            <div class="border_color">mon</div>
                             <div class="color">tue</div>
-                            <div>wed</div>
+                            <div class="border_color">wed</div>
                             <div class="color">thur</div>
-                            <div>fri</div>
-                            <div class="color" >sat</div>
+                            <div class="border_color">fri</div>
+                            <div class="color">sat</div>
                         </div>
                         <div>
-                            <div>
+                            <div class="test">
                                 <!-- 총 주차를 반복합니다. -->
                                 <?php for ($d = 1, $i = 0; $i < $total_week; $i++) { ?>                                
-                                    <a class="days" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>">
-                                        <!-- 1일부터 7일 (한 주) -->
-                                        <?php for ($k = 0; $k < 7; $k++) { ?>
+                                    <!-- 1일부터 7일 (한 주) -->
+                                    <?php for ($k = 0; $k < 7; $k++) { ?>
+                                        <a class="days" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>">
                                             <!-- 토요일 파란색 , 일요일 빨간색 -->
                                             <div class="day main_a_color <?php echo ($k == 0 ? 'sunday' : ($k == 6 ? 'saturday' : '')); ?>">
                                             <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->

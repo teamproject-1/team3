@@ -17,7 +17,7 @@
 
 /* 스티커 */
 .stick_img { 
-    width: 300px;
+    width: 400px;
     min-height: 100px;
     margin-left: 150px;
    
@@ -35,9 +35,11 @@
     align-items: center;
     
 }
-
 .color {
-    background-color: #B2C999;
+    background-color: #B2C999;    
+}
+.border_color {
+    border: 3px solid #B2C999;
 }
 .main_box_left {
     display: grid;
@@ -131,4 +133,8 @@ a {
 }
 .saturday {
     color: blue;
+}
+
+.test {
+    
 }
