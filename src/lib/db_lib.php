@@ -197,6 +197,7 @@ function my_todolist_update($conn, array $arr_param) {
     " UPDATE todolist_boards "
     ." SET "
     ."      check_todo = :check_todo "
+    ."      ,todo_updated_at = NOW() "
     ." WHERE "
     ."      cal_id = :cal_id "
     ." AND  td_id = :td_id "
@@ -260,6 +261,7 @@ function my_todolist_list_select($conn, $arr_param) {
     ."      AND calendar_boards.year = :year "
     ."      AND calendar_boards.month = :month "
     ."      AND calendar_boards.day = :day "
+    ." ORDER BY todolist_boards.check_todo, todolist_boards.todo_updated_at DESC "
     ;
 
     $stmt = $conn->prepare($sql);
