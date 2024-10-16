@@ -143,7 +143,7 @@
                                                 <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ): ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
                                                     <?php echo $n++ ?>
-                                                    <?php if(in_array($year."-".$month."-".$n, $arr_set_todolist_on_date)) { ?><div>test</div> <?php } ?>
+                                                    <?php if(in_array($year."-".$month."-".$n, $arr_set_todolist_on_date)) { ?><div class="stamp"></div> <?php } ?>
                                                 <?php endif ?>
                                             </a>
                                         <?php endfor; ?> 
