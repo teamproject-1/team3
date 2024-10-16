@@ -303,3 +303,7 @@
     text-decoration: line-through;
     color: #929292;
 }
+
+.list_day_color {
+    color: #ff0000;
+}

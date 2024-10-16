@@ -142,7 +142,9 @@
                                                 <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
                                                 <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ) { ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
-                                                    <?php echo $n ?>
+                                                    <p <?php if($result1[0]["day"] === $n) { ?> class="list_day_color" <?php } ?>>
+                                                        <?php echo $n ?>
+                                                    </p>
                                                     <?php if(in_array($year."-".$month."-".$n, $arr_set_todolist_on_date)) { ?><div class="stamp"></div> <?php } ?>
                                                     <?php $n++ ?>
                                                 <?php } ?>
