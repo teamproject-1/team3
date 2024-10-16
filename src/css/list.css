@@ -28,7 +28,10 @@
 }
 
 .list_box_left_calender {
-    background-color: white;
+    /* background-color: white; */
+    background-image: url(../img/theme/cal_pixel.jfif);
+    background-size: cover;
+    background-position: center;
     width: 500px;
     height: 400px;
     border-radius: 20px;
@@ -44,7 +47,7 @@
 
 .month {
     display: flex;
-    background-color: #fff;
+    /* background-color: #fff; */
     text-align: center;
     margin: 15px 0 ;
     justify-content: center;
