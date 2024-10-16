@@ -148,7 +148,7 @@
                                         <!-- 1일부터 7일 (한 주) -->
                                         <?php for ($k = 0; $k < 7; $k++) { ?> 
                                             <a class="list_a_color day"
-                                                <?php if($k >= $start_week) {
+                                                <?php if(!($i === 0 && $k < $start_week)) {
                                                     if($n <= $total_day) { ?>
                                                     href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $n ?>"
                                                     <?php } 

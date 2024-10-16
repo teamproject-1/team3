@@ -85,7 +85,7 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                                     <?php for ($k = 0; $k < 7; $k++) { ?>
                                         <!-- 토요일 파란색 , 일요일 빨간색 -->                                            
                                         <a class="day main_a_color <?php echo ($k == 0 ? 'sunday' : ($k == 6 ? 'saturday' : '')); ?>"
-                                            <?php if($k >= $start_week) {
+                                            <?php if(!($i === 0 && $k < $start_week)) {
                                                 if($d <= $total_day) { ?>
                                                 href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>"
                                                 <?php } 
