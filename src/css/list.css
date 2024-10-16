@@ -21,6 +21,10 @@
     background-color: #B2C999;
 }
 
+.color2 {
+    background-color: #fff;
+}
+
 .main_box_left {
     display: grid;
     justify-items: center;
@@ -65,7 +69,6 @@
 
 .weekdays {
     display: grid;
-    background-color: #fff;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
     text-align: center;
@@ -87,6 +90,7 @@
     text-align: center;
     font-size: 16px;
 }
+
 
 .blank {
     background-color: #fff;
