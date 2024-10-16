@@ -131,13 +131,13 @@
 
                         <!-- 월화수목금토일 -->
                         <div class="weekdays">
-                            <div class="color">sun</div>
+                            <div class="color sunday">sun</div>
                             <div class="color2">mon</div>
                             <div class="color">tue</div>
                             <div class="color2">wed</div>
                             <div class="color">thur</div>
                             <div class="color2">fri</div>
-                            <div class="color">sat</div>
+                            <div class="color saturday">sat</div>
                         </div>
 
                         <div>

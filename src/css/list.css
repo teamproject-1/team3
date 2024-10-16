@@ -25,6 +25,14 @@
     background-color: #fff;
 }
 
+.saturday {
+    color: #1264de
+}
+
+.sunday {
+    color: #de1212;
+}
+
 .main_box_left {
     display: grid;
     justify-items: center;
