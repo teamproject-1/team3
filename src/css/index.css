@@ -36,9 +36,11 @@
 
 /* 책 타이틀 박스 */
  .index_title {
-    background-color: #a0bb73;
+    background-color: #FFF8D2;
     border-radius: 20px;
     border: 5px solid#698044;
+    letter-spacing: 10px;
+    font-size: 1.2rem;
     width: 400px;    
     padding : 15px;
     text-align: center;
