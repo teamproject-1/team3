@@ -49,10 +49,11 @@
 .main_box_right_calender {
     background-color: white;
     width: 500px;
-    height: 400px;
+    min-height: 380px;
     border-radius: 20px;
     border-style: solid;
     border-color: #B2C999;
+    padding-bottom: 20px;
 }
 .calendar {
     width: 450px;
@@ -135,7 +136,3 @@ a {
     color: blue;
 }
 
-.test {
-    display: grid;
-    grid-template-rows: repeat(7,1fr);
-}

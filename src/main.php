@@ -76,7 +76,7 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                             <div class="border_color">fri</div>
                             <div class="color">sat</div>
                         </div>
-                        <div class="test">                           
+                        <div>                          
                                 <!-- 총 주차를 반복합니다. -->
                                 <?php for ($d = 1, $i = 0; $i < $total_week; $i++) { ?>
                                     <div class="days" >                                
@@ -92,7 +92,7 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                                         </a>
                                         <?php } ?>
                                     </div>    
-                                <?php } ?>                           
+                               <?php } ?>                           
                         </div>
                 </div>
             </div>
