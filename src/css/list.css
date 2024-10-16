@@ -96,6 +96,14 @@
     color: #000;
 }
 
+.stamp {
+    background-color: #B2C999;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
 /* 메모 css */
 .list_box_left_memo {
     display: grid;

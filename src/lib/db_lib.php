@@ -372,3 +372,32 @@ function my_calendar_insert($conn, array $arr_param) {
     }
     return true;
 }
+
+
+// my_set_todolist_on_date 함수
+function my_set_todolist_on_date($conn, $arr_param) {
+    $sql =
+    " SELECT  "
+    ." 	CONCAT_WS('-', calendar_boards.`year`, calendar_boards.`month`, calendar_boards.`day`) date "
+    ." FROM  "
+    ."     calendar_boards  "
+    ." JOIN  "
+    ."     todolist_boards  "
+    ." ON  "
+    ."     calendar_boards.cal_id = todolist_boards.cal_id  "
+    ." WHERE  "
+    ."     todolist_boards.todo_deleted_at is null  "
+    ."     AND calendar_boards.year = :year "
+    ."     AND calendar_boards.month = :month "
+    ." GROUP BY calendar_boards.year, calendar_boards.month, calendar_boards.day "
+    ;
+
+    $stmt = $conn->prepare($sql);
+    $result_flg = $stmt->execute($arr_param);
+
+    if(!$result_flg) {
+        throw new Exception("쿼리 실행 실패");
+    }
+
+    return $stmt->fetchAll();
+}

@@ -36,16 +36,20 @@
         }
 
         $result2 = my_memo_select($conn);
-
-        $arr_param = [ 
-            "year" => $_GET["year"],
-            "month" => $_GET["month"],
-            "day" => $_GET["day"]
-        ];
        
-        $result = my_todolist_list_select($conn, $arr_param);
-        // var_dump($result); exit; 확인용
-        
+        $result = my_todolist_list_select($conn, $arr_prepare);
+
+        $arr_prepare = [
+            "year" => $year
+            ,"month" => $month
+        ];
+
+        $result_set_todolist_on_date =  my_set_todolist_on_date($conn, $arr_prepare);
+        $arr_set_todolist_on_date = [];
+
+        foreach($result_set_todolist_on_date as $item) {
+            $arr_set_todolist_on_date[] = $item["date"];
+        }
 
     }catch(Throwable $th) {
         require_once(MY_PATH_ERROR);
@@ -139,6 +143,7 @@
                                                 <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ): ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
                                                     <?php echo $n++ ?>
+                                                    <?php if(in_array($year."-".$month."-".$n, $arr_set_todolist_on_date)) { ?><div>test</div> <?php } ?>
                                                 <?php endif ?>
                                             </a>
                                         <?php endfor; ?> 
