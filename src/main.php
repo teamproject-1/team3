@@ -76,25 +76,23 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                             <div class="border_color">fri</div>
                             <div class="color">sat</div>
                         </div>
-                        <div>
-                            <div class="test">
+                        <div class="test">                           
                                 <!-- 총 주차를 반복합니다. -->
-                                <?php for ($d = 1, $i = 0; $i < $total_week; $i++) { ?>                                
+                                <?php for ($d = 1, $i = 0; $i < $total_week; $i++) { ?>
+                                    <div class="days" >                                
                                     <!-- 1일부터 7일 (한 주) -->
                                     <?php for ($k = 0; $k < 7; $k++) { ?>
-                                        <a class="days" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>">
-                                            <!-- 토요일 파란색 , 일요일 빨간색 -->
-                                            <div class="day main_a_color <?php echo ($k == 0 ? 'sunday' : ($k == 6 ? 'saturday' : '')); ?>">
+                                        <!-- 토요일 파란색 , 일요일 빨간색 -->                                            
+                                        <a class="day main_a_color <?php echo ($k == 0 ? 'sunday' : ($k == 6 ? 'saturday' : '')); ?>" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>">
                                             <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
                                                 <?php if ( ($d > 1 || $k >= $start_week) && ($total_day >= $d)) { ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->                               
                                                     <?php echo $d++ ?>
-                                                <?php } ?>
-                                            </div>
+                                                <?php } ?>                                           
+                                        </a>
                                         <?php } ?>
-                                    </a>
-                                <?php } ?>
-                            </div>
+                                    </div>    
+                                <?php } ?>                           
                         </div>
                 </div>
             </div>
