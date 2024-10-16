@@ -134,21 +134,22 @@
                         <div>
                             <div>
                                 <!-- 총 주차를 반복합니다. -->
-                                <?php for ($n = 1, $i = 0; $i < $total_week; $i++): ?> 
+                                <?php for ($n = 1, $i = 0; $i < $total_week; $i++) { ?> 
                                     <div class="days"> 
                                         <!-- 1일부터 7일 (한 주) -->
-                                        <?php for ($k = 0; $k < 7; $k++): ?> 
+                                        <?php for ($k = 0; $k < 7; $k++) { ?> 
                                             <a class="list_a_color day" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $n ?>">
                                                 <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
-                                                <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ): ?>
+                                                <?php if ( ($n > 1 || $k >= $start_week) && ($total_day >= $n) ) { ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->
-                                                    <?php echo $n++ ?>
+                                                    <?php echo $n ?>
                                                     <?php if(in_array($year."-".$month."-".$n, $arr_set_todolist_on_date)) { ?><div class="stamp"></div> <?php } ?>
-                                                <?php endif ?>
+                                                    <?php $n++ ?>
+                                                <?php } ?>
                                             </a>
-                                        <?php endfor; ?> 
+                                        <?php } ?> 
                                     </div> 
-                                <?php endfor; ?> 
+                                <?php } ?> 
 
                             </div>
                         </div>
