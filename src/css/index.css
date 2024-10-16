@@ -55,7 +55,7 @@
     height: 450px;    
 } 
 
-.index_img_box:hover {
+.index_book:hover .index_img_box {
     background-image: url(../img/book_hover.png);
     background-repeat: no-repeat;
     background-size: cover;
