@@ -45,7 +45,7 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                         </div>                       
                     </div>                   
                     <div class="main_box_right_calender">
-                    <div class="calendar">
+                <div class="calendar">
                         <div class="month">
                             <!-- 현재가 1월이라 이전 달이 작년 12월인경우 -->
                             <?php if ($month == 1) { ?>
@@ -68,30 +68,31 @@ $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주
                         </div>
                         <!-- 월화수목금토일 -->
                         <div class="weekdays">
-                            <div class="color sunday">sun</div>
+                            <div class="color">sun</div>
                             <div>mon</div>
                             <div class="color">tue</div>
                             <div>wed</div>
                             <div class="color">thur</div>
                             <div>fri</div>
-                            <div class="color saturday" >sat</div>
+                            <div class="color" >sat</div>
                         </div>
                         <div>
                             <div>
                                 <!-- 총 주차를 반복합니다. -->
                                 <?php for ($d = 1, $i = 0; $i < $total_week; $i++) { ?>                                
-                                    <div class="days">
+                                    <a class="days" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>">
                                         <!-- 1일부터 7일 (한 주) -->
                                         <?php for ($k = 0; $k < 7; $k++) { ?>
-                                            <div class="day">
-                                                <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
+                                            <!-- 토요일 파란색 , 일요일 빨간색 -->
+                                            <div class="day main_a_color <?php echo ($k == 0 ? 'sunday' : ($k == 6 ? 'saturday' : '')); ?>">
+                                            <!-- 시작 요일부터 마지막 날짜까지만 날짜를 보여주도록 -->
                                                 <?php if ( ($d > 1 || $k >= $start_week) && ($total_day >= $d)) { ?>
                                                     <!-- 현재 날짜를 보여주고 1씩 더해줌 -->                               
-                                                    <a class="main_a_color" href="/list.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $d ?>"><?php echo $d++ ?></a>
+                                                    <?php echo $d++ ?>
                                                 <?php } ?>
                                             </div>
                                         <?php } ?>
-                                    </div>
+                                    </a>
                                 <?php } ?>
                             </div>
                         </div>

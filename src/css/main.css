@@ -109,12 +109,7 @@ a {
     transition: all 0.3s;
 }
 
-/* 일 오버시 배경화면 줌인아웃 */
-.day:hover {
-    background-color: #637249;
-    transform: scale(1.2);
 
-}
 .blank {
     background-color: #fff;
 }
@@ -125,8 +120,15 @@ a {
 }
 /* 메인 달력 일 색상 오버시 효과 */
 .main_a_color:hover {
-   
-    color : #BCCE5D;
+   background-color: #BCCE5D ;
+    color : #000;
     transform: scale(1.2);
 
+}
+/* 토 일 색상 */
+.sunday {
+    color: red;
+}
+.saturday {
+    color: blue;
 }
