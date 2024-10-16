@@ -87,7 +87,7 @@ function my_board_update($conn, array $arr_param) {
     $result_cnt = $stmt->rowCount();
 
     if($result_cnt !== 1) {
-        throw new Exception("update_deco 갯수 오류");
+        throw new Exception("update 갯수 오류");
     }
     return true;
 }
@@ -212,7 +212,7 @@ function my_todolist_update($conn, array $arr_param) {
     $result_cnt = $stmt->rowCount();
 
     if($result_cnt !== 1) {
-        throw new Exception("update_deco 갯수 오류");
+        throw new Exception("todolist_check_update 갯수 오류");
     }
     return true;
 }
@@ -239,7 +239,7 @@ function my_todolist_delete($conn, array $arr_param) {
     $result_cnt = $stmt->rowCount();
 
     if($result_cnt !== 1) {
-        throw new Exception("update_deco 갯수 오류");
+        throw new Exception("todolist_delete 갯수 오류");
     }
     return true;
 }
