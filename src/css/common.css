@@ -69,3 +69,11 @@ a {
 .btn_small:hover {
     background-color: #899B2D;
 }
+
+a {
+    color: #000;
+}
+
+a:visited {
+    color: #000;
+}

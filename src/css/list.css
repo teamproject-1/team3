@@ -276,6 +276,10 @@
     line-height: 50px;
 }
 
+.list_deco_btn:visited {
+    color: #fff;
+}
+
 .list_deco_btn:hover {
     background-color: #8C9D34;
     cursor: pointer;
