@@ -27,8 +27,6 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                                     <h1>죄송합니다.</h1>
                                     <p>요청하신 페이지에서 에러가 발생했습니다.</p>
                                     <p>메인 페이지로 돌아가 주세요.</p>
-                                    <!-- 작업중 에러 체크용 -->
-                                    <p><?php echo $th->getMessage(); ?></p>
                                 </div>
                             </div>
                             <a href="/main.php"><button type="button" class="btn_small error_btn_error">메인 페이지로 이동</button></a>
