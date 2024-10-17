@@ -10,6 +10,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'UhBeeZZIBA-Regular';
+    cursor: url('../img/cursor_pencil.png') 5 25, auto;
 }
 
 body {
