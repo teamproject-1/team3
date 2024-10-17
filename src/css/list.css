@@ -195,6 +195,7 @@
 
 .list_btn_img:hover {
     content: url(../img/delete_hover_icon.png);
+    cursor: pointer;
 }
 
 /* 책 오른쪽 */

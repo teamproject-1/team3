@@ -92,6 +92,7 @@
 
 .detail_delete:hover .detail_delete_hover {
     display: block;
+    cursor: pointer;
 }
 
 .detail_content_date {

@@ -142,7 +142,7 @@ try {
                                     <div class="detail_content_todo">
                                         <!-- todo 내용 -->
                                         <div style="padding-top: 5px;">
-                                            <input type="text" name="content" id="content" value="<?php echo $result_todo["content"] ?>">
+                                            <input type="text" name="content" id="content" value="<?php echo $result_todo["content"] ?>" required>
                                         </div>
                                     </div>
                                     <!-- todo 생성일 -->
