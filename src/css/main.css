@@ -1,3 +1,8 @@
+.main_box_left {
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 470px 180px;
+}
 /* 메인 이미지 박스 */
 .main_img_box {
     display: flex;
@@ -14,15 +19,7 @@
     height: 450px;   
 }
 
-/* 스티커 */
-.stick_img { 
-    width: 400px;
-    min-height: 100px;
-    margin-left: 150px;
-   
-}
 
-/* 달력 */
 .main_box_right {
     background-image: linear-gradient(to right, #D6C0AB, #fdecd2);
     width: 600px;
@@ -34,18 +31,23 @@
     align-items: center;
     
 }
+/* 스티커 */
+.stick_img { 
+    width: 400px;
+    min-height: 100px;
+    margin-left: 150px;
+   
+}
+
+/* 일 수 목 토 색상 */
 .color {
     background-color: #B2C999;    
     margin: auto 0;
     border: 3px solid #B2C999;
 }
+/* 월수금 테두리 색상 */
 .border_color {
     border: 3px solid #B2C999;
-}
-.main_box_left {
-    display: grid;
-    justify-items: center;
-    grid-template-rows: 470px 180px;
 }
 .main_box_right_calender {
     background-color: white;
@@ -56,10 +58,12 @@
     border-color: #B2C999;
     padding-bottom: 20px;
 }
+/* 달력 */
 .calendar {
     width: 450px;
     margin: 0 auto;
 }
+/* 월 */
 .month {
     display: flex;
     background-color: #fff;
@@ -68,7 +72,7 @@
     justify-content: center;
     gap: 50px;
 }
-/* <> 색상 변경 되는거 수정 */
+/*  이전 월 다음 색상 변경 되는거 수정 */
 .month >a:visited {
     color:#000;
     
@@ -76,12 +80,14 @@
 a { 
     color:#000;
 }
+
 .main_month_btn {
     border: none;
     background-color: none;
     background-color: transparent;
     font-size: 2rem;
 }
+/* 주 */
 .weekdays {
     display: grid;
     background-color: #fff;
@@ -90,14 +96,6 @@ a {
     text-align: center;
     margin-bottom: 5px;
 }
-/* 토일 색상 */
-.weekdays .sunday {
-    color:#de1212;
-}
-.weekdays .saturday {
-    color:#1264de;
-}
-
 .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -113,10 +111,6 @@ a {
     transition: all 0.3s;
 }
 
-
-.blank {
-    background-color: #fff;
-}
 /* 메인 달력 일 색상 */
 .main_a_color {
     color : #000;
@@ -129,7 +123,7 @@ a {
     transform: scale(1.2);
 
 }
-/* 토 일 색상 */
+/* 토 ,일 색상 */
 .sunday {
     color: red;
 }
@@ -137,6 +131,7 @@ a {
     color: blue;
 }
 
+/* 현재 날짜 색상 */
 .main_today_date {
     background-color: #B2C999;
 }
