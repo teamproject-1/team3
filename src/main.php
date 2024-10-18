@@ -8,7 +8,7 @@ $today = date("Y-m-d");
 $year = !empty($_GET['year']) ? $_GET['year'] : date('Y');
 // GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
 $month = !empty($_GET['month']) ? $_GET['month'] : date('m');
-// GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
+// GET으로 넘겨 받은 day값이 있다면 넘겨 받은걸 day변수에 적용하고 없다면 현재 월
 $day = !empty($_GET['day']) ? $_GET['day'] : date('d');
 
 $date = "$year-$month-01"; // 현재 날짜
