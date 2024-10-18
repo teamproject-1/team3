@@ -188,7 +188,7 @@
                     <!-- 폼 포스트 으로보내기 -->
                     <form method="post" action="/memo_insert.php">
                         <div>
-                            <input name="memo_content" required class="list_memo_input_text" placeholder="입력하세요.." type="text" maxlength="35">
+                            <input name="memo_content" required class="list_memo_input_text" placeholder="입력하세요.." type="text" maxlength="50">
                             <button type="submit" class="list_memo_insert_btn">확인</button>
                         </div>
                         <input type="hidden" name="year" value="<?php echo $year ?>">
