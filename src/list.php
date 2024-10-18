@@ -188,7 +188,7 @@
                     <!-- 폼 포스트 으로보내기 -->
                     <form method="post" action="/memo_insert.php">
                         <div>
-                            <input name="memo_content" required class="list_memo_input_text" placeholder="입력하세요.." type="text">
+                            <input name="memo_content" required class="list_memo_input_text" placeholder="입력하세요.." type="text" maxlength="35">
                             <button type="submit" class="list_memo_insert_btn">확인</button>
                         </div>
                         <input type="hidden" name="year" value="<?php echo $year ?>">
@@ -260,7 +260,7 @@
                 <!-- TODOLIST 추가 -->
                 <form method="POST" action="/todolist_insert.php">
                     <div>
-                        <input name="content" required class="list_box_right_input_text" type="text"> <button type="submit" class="btn_small">추가</button>
+                        <input name="content" required class="list_box_right_input_text" type="text" maxlength="12"> <button type="submit" class="btn_small">추가</button>
                         <div class="list_box_right_underscore"></div>
                         <input type="hidden" name="year" value="<?php echo $year ?>">
                         <input type="hidden" name="month" value="<?php echo $month ?>">
