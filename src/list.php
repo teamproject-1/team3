@@ -20,23 +20,26 @@
 
         $conn = my_db_conn();
 
-        // calendar_boards에서 값 가져오기
+        // GET으로 념거받는 year, month, day 값이있다면 넘겨받은걸 적용 넘겨받는값이 없다면 현제 날짜
         $arr_prepare = [
             "year" => $year
             ,"month" => $month
             ,"day" => $day
         ];
         
+        //  calender_boards 의 정보 가져오기
         $result1 = my_calendar_select($conn, $arr_prepare);
 
-        // 가져온 $result가 비어있으면 insert
+        // 가져온 $result1 이 비어있으면 insert
         if(empty($result1)) {
             my_calendar_insert($conn, $arr_prepare);
             $result1 = my_calendar_select($conn, $arr_prepare);
         }
 
+        // memo_boards 의 정보 가져오기
         $result2 = my_memo_select($conn);
-       
+
+        // 해당 날짜에 맞는 todolist_boards 의 정보 가져오기
         $result = my_todolist_list_select($conn, $arr_prepare);
 
         $arr_prepare = [
@@ -44,6 +47,7 @@
             ,"month" => $month
         ];
 
+        // 해달날짜에 cal_id 의 이너조인으로 content가 있는 date를 가져옴
         $result_set_todolist_on_date =  my_set_todolist_on_date($conn, $arr_prepare);
         $arr_set_todolist_on_date = [];
 
@@ -72,6 +76,8 @@
         <div class="main_container_box">
             <!-- 왼쪽책 -->
             <div class="main_box_left">
+                <!-- 테마 정보를 맞아서 0~3 에 해당하는 테마 출력-->
+                <!-- 마스킹 테이프 위쪽  -->
                 <div class="list_masking_tape_top"
                     <?php if($result1[0]["theme"] === '0') { ?>
                         style="background-image: url(/img/theme/animal_masking.jfif);">
@@ -83,6 +89,7 @@
                         style="background-image: url();">
                     <?php } ?>
                 </div>
+                <!-- 마스킹 테이프 아래쪽 -->
                 <div class="list_masking_tape_bottom"
                     <?php if($result1[0]["theme"] === '0') { ?>
                         style="background-image: url(/img/theme/animal_masking.jfif);">
@@ -105,6 +112,7 @@
                     <?php } else { ?>
                         style="background-color: #fff;">
                     <?php } ?>
+
                     <div class="calendar">
                         <div class="month">
                             
@@ -160,6 +168,7 @@
 
                                                         <?php echo $n ?>
                                                     </p>
+                                                    <!-- 현재 선택된 날짜를 arr_set_todolist_on_date 에서 찾아서 있을시 true 반환  -->
                                                     <?php if(in_array($year."-".$month."-".$n, $arr_set_todolist_on_date)) { ?><div class="stamp"></div> <?php } ?>
                                                     <?php $n++ ?>
                                                 <?php } ?>
@@ -223,8 +232,8 @@
                         <?php } ?>
                     </div>
                 </div>
-                <!-- 어떻게 하는지 모르겠지만? 전기수분들이 한거에서 A테그로 체크이미지 넣어서 하는것 따라함 -->
-
+                
+                <!-- TODOLIST 출력 -->
                 <div class="list_box_right_detail scrollable">
                     <?php foreach($result as $item) { ?>
                         <div class="list_box_right_detail_box">
@@ -248,7 +257,7 @@
                         </div>
                     <?php } ?>
                 </div> 
-
+                <!-- TODOLIST 추가 -->
                 <form method="POST" action="/todolist_insert.php">
                     <div>
                         <input name="content" required class="list_box_right_input_text" type="text"> <button type="submit" class="btn_small">추가</button>
@@ -262,6 +271,7 @@
             </div>
                 
         </div>
+        <!-- 데코 버튼 데코업데이트페이지로 이동 -->
         <a class="list_deco_btn" href="./update_deco.php?year=<?php echo $year ?>&month=<?php echo $month ?>&day=<?php echo $day ?>">데코</a>
            
     </div>
